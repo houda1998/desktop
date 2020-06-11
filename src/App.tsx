@@ -2,16 +2,15 @@ import React from "react";
 import { hot } from "react-hot-loader/root";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./components/Routes";
-import { ApolloProvider } from "@apollo/react-hooks";
-import client from "./client";
 import 'antd/dist/antd.css';
-
+import{Provider} from "react-redux"
+import store from "./redux"
 export default hot(
   (): JSX.Element => (
-    <ApolloProvider client={client}>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes />
       </BrowserRouter>
-    </ApolloProvider>
+    </Provider>
   )
 );
