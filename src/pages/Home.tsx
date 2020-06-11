@@ -1,10 +1,8 @@
 import React from "react";
-import MYLayout from "../components/Cours"
+import Cours from "../components/Cours"
 function Home() {
   return (
-    <div>
-    <MYLayout></MYLayout>
-    </div>
+    <Cours/>
   );
 }
 

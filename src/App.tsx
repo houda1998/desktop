@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import Routes from "./components/Routes";
 import { ApolloProvider } from "@apollo/react-hooks";
 import client from "./client";
+import 'antd/dist/antd.css';
 
 export default hot(
   (): JSX.Element => (
