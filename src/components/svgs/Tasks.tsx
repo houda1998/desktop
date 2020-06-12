@@ -2,7 +2,7 @@ import React from 'react'
 
 function Tasks() {
     return (
-        <svg width="193" height="180" viewBox="0 0 193 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="165" height="180" viewBox="0 0 193 180" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d)">
         <rect x="4" width="184.385" height="141" rx="10" fill="url(#paint0_linear)"/>
         </g>
@@ -11,13 +11,13 @@ function Tasks() {
         </g>
         <path d="M123.5 31.5H92V39.5H123.5V31.5Z" fill="white"/>
         <path d="M123.5 23H92V31.5H123.5V23Z" fill="white"/>
-        <path d="M75.5 96.375V118H141.5V31.5H123.5M75.5 96.375V74.75V31.5H92M75.5 96.375H48L81 125L60.5 128.5L41 118M123.5 31.5H92M123.5 31.5V39.5H92V31.5M123.5 31.5V23H92V31.5" stroke="white" stroke-width="5"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M123.664 88.2609C122.495 89.7052 121.123 90.9791 119.593 92.0395L117.713 89.6901C119.056 88.7848 120.258 87.6872 121.28 86.4368L123.664 88.2609ZM125.855 84.9006C126.663 83.3285 127.263 81.6323 127.62 79.8482L124.684 79.2289C124.419 80.565 123.993 81.8431 123.426 83.0419L125.855 84.9006ZM126.938 69.6349C127.61 71.582 127.982 73.6687 127.999 75.8401L124.981 75.2035C124.906 73.6244 124.609 72.1034 124.121 70.6711L126.938 69.6349ZM108.5 95.5C111.17 95.5 113.715 94.9633 116.032 93.992L114.068 91.5368C112.329 92.1603 110.454 92.5 108.5 92.5C99.3873 92.5 92 85.1127 92 76C92 66.8873 99.3873 59.5 108.5 59.5C110.612 59.5 112.632 59.897 114.489 60.6204L115.957 57.9768C113.66 57.0252 111.141 56.5 108.5 56.5C97.7304 56.5 89 65.2304 89 76C89 86.7696 97.7304 95.5 108.5 95.5Z" fill="white"/>
-        <path d="M106 75.5001L118.062 83.9166" stroke="white" stroke-width="2"/>
-        <path d="M109 80.5V65.5" stroke="white" stroke-width="2"/>
+        <path d="M75.5 96.375V118H141.5V31.5H123.5M75.5 96.375V74.75V31.5H92M75.5 96.375H48L81 125L60.5 128.5L41 118M123.5 31.5H92M123.5 31.5V39.5H92V31.5M123.5 31.5V23H92V31.5" stroke="white" strokeWidth="5"/>
+        <path fillRule="evenodd" clipRule="evenodd" d="M123.664 88.2609C122.495 89.7052 121.123 90.9791 119.593 92.0395L117.713 89.6901C119.056 88.7848 120.258 87.6872 121.28 86.4368L123.664 88.2609ZM125.855 84.9006C126.663 83.3285 127.263 81.6323 127.62 79.8482L124.684 79.2289C124.419 80.565 123.993 81.8431 123.426 83.0419L125.855 84.9006ZM126.938 69.6349C127.61 71.582 127.982 73.6687 127.999 75.8401L124.981 75.2035C124.906 73.6244 124.609 72.1034 124.121 70.6711L126.938 69.6349ZM108.5 95.5C111.17 95.5 113.715 94.9633 116.032 93.992L114.068 91.5368C112.329 92.1603 110.454 92.5 108.5 92.5C99.3873 92.5 92 85.1127 92 76C92 66.8873 99.3873 59.5 108.5 59.5C110.612 59.5 112.632 59.897 114.489 60.6204L115.957 57.9768C113.66 57.0252 111.141 56.5 108.5 56.5C97.7304 56.5 89 65.2304 89 76C89 86.7696 97.7304 95.5 108.5 95.5Z" fill="white"/>
+        <path d="M106 75.5001L118.062 83.9166" stroke="white" strokeWidth="2"/>
+        <path d="M109 80.5V65.5" stroke="white" strokeWidth="2"/>
         <defs>
-        <filter id="filter0_d" x="0" y="0" width="192.385" height="149" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <filter id="filter0_d" x="0" y="0" width="192.385" height="149" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
         <feOffset dy="4"/>
         <feGaussianBlur stdDeviation="2"/>
@@ -25,8 +25,8 @@ function Tasks() {
         <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
         </filter>
-        <filter id="filter1_d" x="40.0486" y="156.57" width="120.722" height="22.6445" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <filter id="filter1_d" x="40.0486" y="156.57" width="120.722" height="22.6445" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
         <feOffset dy="4"/>
         <feGaussianBlur stdDeviation="2"/>
@@ -35,9 +35,9 @@ function Tasks() {
         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
         </filter>
         <linearGradient id="paint0_linear" x1="14.5" y1="-12.5" x2="107.224" y2="147.473" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#E86BA0"/>
-        <stop offset="0.6267" stop-color="#916CFF"/>
-        <stop offset="1" stop-color="#793CB7"/>
+        <stop stopColor="#E86BA0"/>
+        <stop offset="0.6267" stopColor="#916CFF"/>
+        <stop offset="1" stopColor="#793CB7"/>
         </linearGradient>
         </defs>
         </svg>

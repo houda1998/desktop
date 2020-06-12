@@ -1,12 +1,7 @@
 .nav {
-    /* position: absolute; */
     width: 100%;
-    /* height: 83px;
-right: 0px;
-top: 83px; */
     background: #FFFFFF;
     border: 1px solid #F7F7F7;
-    /* transform: matrix(1, 0, 0, -1, 0, 0); */
 }
 
 .ant-layout .ant-layout-has-sider {
@@ -63,7 +58,7 @@ top: 83px; */
 }
 
 .mydropdown {
-    width: 73px;
+    width: 100px;
     height: 27px;
 }
 
@@ -88,11 +83,16 @@ top: 83px; */
     color: white;
 }
 
-.ant-form-horizontal .ant-form-item-control {
-    margin: auto;
+.searchbar {
+    position: absolute;
+    height: 40px;
+    right: 100px;
+    border-radius: 100px;
+    width: auto;
+    float: right;
+    MARGIN: 5PX;
 }
 
-.ant-form-item-label {
-    text-align: left;
-    margin-right: -119px;
+.ant-form-horizontal .ant-form-item-control {
+    margin: 0;
 }

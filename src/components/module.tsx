@@ -35,7 +35,7 @@ function ModelLayout() {
               <Col className="gutter-row" md={{ span: 3, offset: 1 }} lg={{ span: 6, offset: 2 }}  >
               <Card bordered={false}  hoverable
               style={{ width: 160,height:170 }}
-            cover={<TasksSVG/>
+            cover={<Link to="/tasks"><TasksSVG/></Link>
             }
             >
                 </Card>

@@ -25,6 +25,7 @@ function Home() {
       <Layout>
         <Header className="nav">
           <NGCLogo />
+          <Input placeholder="Search" className="searchbar" />
         </Header>
         <Layout>
           <Sider width={200} style={{ background: '#fff' }} className='Sider'>

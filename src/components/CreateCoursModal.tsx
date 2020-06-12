@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Button, Form, Input } from 'antd';
+import { Modal, Button, Form, Input, Select } from 'antd';
 import { useDispatch} from "react-redux"
 import {addOne} from "../redux/actions/models"
 
@@ -11,11 +11,14 @@ const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
 };
-
+function handleChange(value:any) {
+  console.log(`selected ${value}`);
+}
 
 function CreateCoursModal({showModal,visible} : any) {
   const [form] = Form.useForm();
   const [cours, setCours] = useState({})
+  const { Option } = Select;
   const dispatch = useDispatch()
   const addCours = () => {
     dispatch(addOne("cours",cours))
@@ -49,10 +52,31 @@ function CreateCoursModal({showModal,visible} : any) {
             }} />
           </Form.Item>
           <Form.Item name="filliere" label="Fillière(s)" rules={[{ required: true }]}>
-            <Input style={{ marginLeft: "12px" }} onChange={(e) => {
-              e.persist()
-              setCours(cours => ({...cours,filiere:e.target.value}))
-            }}/>
+             <Input style={{ marginLeft: "12px" }} onChange={(e) => {
+               e.persist()
+             setCours(cours => ({...cours,filiere:e.target.value}))
+             }}/>
+            
+          </Form.Item>
+          <Form.Item name="fillieres" label="Fillière(s)" >
+          <Select
+    mode="multiple"
+    style={{ width: '100%' }}
+    placeholder="selectionnez fillière"
+    onChange={handleChange}
+    optionLabelProp="label"
+  >
+    <Option value="bdcc" label="bdcc">
+      <div className="demo-option-label-item">
+        bdcc
+      </div>
+    </Option>
+    <Option value="glsid" label="glsid">
+      <div className="demo-option-label-item">
+      glsid
+      </div>
+    </Option>
+  </Select>
           </Form.Item>
           <Form.Item {...tailLayout}>
           </Form.Item>

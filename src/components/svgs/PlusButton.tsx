@@ -8,8 +8,8 @@ function PlusButton({showModal}:any) {
              </g>
              <path d="M56.75 42.25H43.25V55.75H38.75V42.25H25.25V37.75H38.75V24.25H43.25V37.75H56.75V42.25Z" fill="white"/>
              <defs>
-             <filter id="filter0_ddd" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+             <filter id="filter0_ddd" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+             <feFlood floodOpacity="0" result="BackgroundImageFix"/>
              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
              <feOffset dy="2"/>
              <feGaussianBlur stdDeviation="2"/>
@@ -28,8 +28,8 @@ function PlusButton({showModal}:any) {
              <feBlend mode="normal" in="SourceGraphic" in2="effect3_dropShadow" result="shape"/>
              </filter>
              <linearGradient id="paint0_linear" x1="41" y1="9" x2="41" y2="71" gradientUnits="userSpaceOnUse">
-             <stop stop-color="#7C3DB7"/>
-             <stop offset="1" stop-color="#DE67A2"/>
+             <stop stopColor="#7C3DB7"/>
+             <stop offset="1" stopColor="#DE67A2"/>
              </linearGradient>
              </defs>
              </svg>

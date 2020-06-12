@@ -47,3 +47,17 @@
     .site-card-wrapper {
         padding: 2%;
     }
+    
+    .searchbar {
+        position: absolute;
+        height: 40px;
+        right: 100px;
+        border-radius: 100px;
+        width: auto;
+        float: right;
+        MARGIN: 5PX;
+    }
+    
+    .ant-upload-picture-card-wrapper {
+        margin-left: 104px;
+    }

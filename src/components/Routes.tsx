@@ -4,6 +4,7 @@ import Home from "../pages/Home"
 import Student from '../pages/Student';
 import Module from '../pages/module';
 import FilesList from '../pages/files';
+import TasksTest from '../pages/tasks';
 function Routes() {
     return (
         <Switch>
@@ -18,6 +19,9 @@ function Routes() {
             </Route>
             <Route path="/fileSharing">
             <FilesList></FilesList>
+            </Route>
+            <Route path="/tasks">
+            <TasksTest></TasksTest>
             </Route>
         </Switch>
     )
