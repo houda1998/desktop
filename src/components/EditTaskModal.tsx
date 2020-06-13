@@ -14,7 +14,7 @@ const layout = {
 function handleChange(value:any) {
     console.log(`selected ${value}`);
   }
-function CreateTaskModal({showModal,visible} : any) {
+function EditTaskModal({showModal,visible} : any) {
     const [value, setValue] = useState(null);
     
 
@@ -44,7 +44,7 @@ function CreateTaskModal({showModal,visible} : any) {
 
     return (
         <Modal
-      title="Ajouter devoir"
+      title="Modifier devoir"
       visible={visible}
       onCancel={()=> showModal(false)}
           footer={[
@@ -105,4 +105,4 @@ function CreateTaskModal({showModal,visible} : any) {
     )
 }
 
-export default CreateTaskModal
+export default EditTaskModal
