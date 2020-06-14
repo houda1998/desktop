@@ -17,7 +17,6 @@ const [visible,showModal]=useState(false)
    <div style={{paddingBottom:"20px",position:"sticky",float:"right"}}>
    <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />}/>
    </div>
-   
    </div>
    <MyTasks></MyTasks>
    <CreateTaskModal visible={visible} showModal = {showModal}/>

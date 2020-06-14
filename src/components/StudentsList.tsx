@@ -1,10 +1,12 @@
-import React,{useState,Component} from 'react'
+import React,{useState,Component, useEffect} from 'react'
 import { Upload, message,Modal,Table,Dropdown, Input,Tag, Button,Layout, Menu, Breadcrumb,Form } from 'antd';
 import { SmallDashOutlined,  SearchOutlined} from '@ant-design/icons'
 import 'antd/dist/antd.css';
 import './css/StudentList.css';
 import '@ant-design/compatible/assets/index.css';
 import { ColumnProps } from 'antd/es/table';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAll } from '../redux/actions/models';
 
     let color='';
     let stat='';
@@ -16,7 +18,12 @@ import { ColumnProps } from 'antd/es/table';
 function StudentList() {
               
   //************************************  CONSTANTES  ********************************************//
- 
+  const dispatch = useDispatch()
+  const users :any = useSelector((state:any) => state.models["users"])
+ useEffect(() => {
+   dispatch(fetchAll("users"))
+ }, []) 
+ console.log(users || [])
   const [visible, showModal] = useState(false)
   const [visi, showModal2] = useState(false)
   const layout = {
@@ -33,27 +40,9 @@ function StudentList() {
     AccountStatut:boolean,
     Fullname: string,
     email:string,
-    filliere:string
+    filiere:string
     action:any;
   }
-  const data: User[] = [
-    {
-  key: 0,
-  AccountStatut:true,
-  Fullname: 'Jack jacky',
-  email:"jack@gmail.com",
-  filliere:"bdcc",
-  action:"",
-    },
-    {
-      key: 1,
-      AccountStatut:false,
-      Fullname: 'Lola lili',
-      email:"Lola@gmail.com",
-      filliere:"bdcc",
-      action:"",
-      },
-];
 
 
   const more = (
@@ -72,11 +61,12 @@ function StudentList() {
     const columns: ColumnProps<User>[] = [{
       
           title: 'AccountStatut',
-          dataIndex: 'AccountStatut',
+          dataIndex: 'isActive',
           key: 'AccountStatut',
            render:(cell, row, index) => 
-           { 
-             if(data[index].AccountStatut==true){
+           { (users || []).map((user:any)=>{
+
+               if(user.isActive ==true){
                color='#5DF888';
                stat='active';
              }
@@ -86,6 +76,8 @@ function StudentList() {
                stat="down"
              }
             
+           })
+             
             return (
               
               <Tag color={color} key={stat} className="stat">
@@ -95,18 +87,9 @@ function StudentList() {
         },
       {
         title: 'FullName',
-        dataIndex: 'Fullname',
+        dataIndex: 'name',
         key: 'Fullname',
-        render:(cell,row,index)=>{
-          let name=data[index].Fullname;
-          return (
-            <div>
-             {name}
-            </div>
-
-          )
-        }
-
+       
         
       },
       {
@@ -115,9 +98,9 @@ function StudentList() {
         key: 'email',
       },
       {
-        title: 'filliere',
-        dataIndex: 'filliere',
-        key: 'filliere',
+        title: 'filiere',
+        dataIndex: 'filiere',
+        key: 'filiere',
       },
       {
         title: 'Action',
@@ -139,7 +122,7 @@ function StudentList() {
     <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />}/>
     </div>
    
-    <Table<User> columns={columns} dataSource={data} />
+    <Table columns={columns} dataSource={users || []} />
     <Modal
     title="modifier étudiant"
     visible={visi}

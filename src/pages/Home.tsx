@@ -13,7 +13,10 @@ const { Header, Content, Sider } = Layout;
 
 function Home() {
   const [visible, showModal] = useState(false)
-
+  const [Collapsed,setCollapsed]=useState(false);
+  const onCollapse=()=>{
+    setCollapsed(!Collapsed)
+  }
   const dispatch = useDispatch()
    const cours :any = useSelector((state:any) => state.models["cours"])
   useEffect(() => {
@@ -28,7 +31,7 @@ function Home() {
           <Input placeholder="Search" className="searchbar" />
         </Header>
         <Layout>
-          <Sider width={200} style={{ background: '#fff' }} className='Sider'>
+          <Sider width={200} style={{ background: '#fff' }} className='Sider'collapsedWidth="0" collapsible collapsed={Collapsed} onCollapse={onCollapse}>
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
