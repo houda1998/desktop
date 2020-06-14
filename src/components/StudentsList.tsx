@@ -23,11 +23,15 @@ function StudentList() {
  useEffect(() => {
    dispatch(fetchAll("users"))
  }, []) 
+
+ const myusers:any=[]
+ const getusers=(users || []).map((user:any)=>{
+   myusers.push(user) 
+ })
  console.log(users || [])
   const [visible, showModal] = useState(false)
-  const [visi, showModal2] = useState(false)
   const layout = {
-    labelCol: { span: 8 },
+    labelCol: { span: 6 },
     wrapperCol: { span: 16 },
   };
   const tailLayout = {
@@ -48,7 +52,7 @@ function StudentList() {
   const more = (
     
       <Menu>
-        <Menu.Item className="mydropdown" onClick={() => showModal2(!visi)}>
+        <Menu.Item className="mydropdown" onClick={() => showModal(!visible)}>
         
             modifier
          
@@ -64,19 +68,21 @@ function StudentList() {
           dataIndex: 'isActive',
           key: 'AccountStatut',
            render:(cell, row, index) => 
-           { (users || []).map((user:any)=>{
+           { 
 
-               if(user.isActive ==true){
+               if(myusers[index].isActive ==true){
                color='#5DF888';
                stat='active';
+              
              }
              else
              {
                color="#FF4949";
-               stat="down"
+               stat="down";
+               
              }
             
-           })
+           
              
             return (
               
@@ -125,13 +131,13 @@ function StudentList() {
     <Table columns={columns} dataSource={users || []} />
     <Modal
     title="modifier étudiant"
-    visible={visi}
-    onCancel={()=> showModal2(false)}
+    visible={visible}
+    onCancel={()=> showModal(false)}
         footer={[
           <Button form="myForm" key="creer" htmlType="submit">
              creer
           </Button>,
-          <Button  key="cancel" htmlType="button" onClick={() => showModal2(false)}>
+          <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
               cancel
           </Button>
           ]}
