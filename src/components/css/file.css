@@ -32,7 +32,6 @@
     background: white;
     border: 1px solid #F0F0F0;
     height: inherit;
-    overflow-x: scroll;
     height: auto;
     display: flex;
     flex-direction: column;

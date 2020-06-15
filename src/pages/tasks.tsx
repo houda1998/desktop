@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../components/CourseLayout'
 import MyTasks from '../components/tasks';
 import { Button, Input } from 'antd';
 import '../components/css/tasks.css';

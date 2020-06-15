@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import NGCLogo from "../components/svgs/NGCLogo"
 import { Form, Modal, Layout, Menu, Breadcrumb, Card, Col, Row, Input, Button } from 'antd';
 import '../components/css/cours.css';
 import '@ant-design/compatible/assets/index.css';
@@ -8,8 +7,7 @@ import CoursCard from '../components/CoursCard';
 import CreateCoursModal from '../components/CreateCoursModal';
 import {fetchAll} from "../redux/actions/models"
 import {useDispatch, useSelector} from "react-redux"
-const { Header, Content, Sider } = Layout;
-
+import HomeLayout from "../components/HomeLayout"
 
 function Home() {
   const [visible, showModal] = useState(false)
@@ -21,20 +19,7 @@ function Home() {
   }, [])
 
   return (
-    <div>
-      <Layout>
-        <Header className="nav">
-          <NGCLogo />
-          <Input placeholder="Search" className="searchbar" />
-        </Header>
-        <Layout>
-          <Sider width={200} style={{ background: '#fff' }} className='Sider'>
-          </Sider>
-          <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Cours</Breadcrumb.Item>
-            </Breadcrumb>
-            <Content className='menu'>
+      <HomeLayout>
               <div className="site-card-wrapper">
                 <Row gutter={[48, 24]}>
                   {cours && cours.map((cours:any) => (
@@ -47,12 +32,9 @@ function Home() {
               <div className="footer">
                 <PlusButton showModal={() => showModal(!visible)} />
               </div>
-            </Content>
-          </Layout>
-        </Layout>
-      </Layout>
       <CreateCoursModal visible={visible} showModal = {showModal}/>
-    </div>)
+      </HomeLayout>
+)
 };
 
 export default Home

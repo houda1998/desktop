@@ -32,3 +32,19 @@ export const addOne = (model: Model, data:any) => {
         })
     }
 }
+
+
+export const DELETE_ONE = "DELETE_ONE"
+
+export const deleteOne = (model: Model, id:number) => {
+    return (dispatch: any) => {
+        api.delete(`/${model}/${id}`)
+        .then(response => {
+            console.log(response)
+            dispatch({ type: DELETE_ONE, payload: { model, id } })
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    }
+}

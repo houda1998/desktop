@@ -3,7 +3,7 @@ import { Form, Modal, Menu, Breadcrumb, Card, Col, Row, Input, Button } from 'an
 
 import { Link } from "react-router-dom";
 import ShareScreenSVG from "../components/svgs/shareScreen"
-import Layout from "../components/Layout"
+import Layout from "../components/CourseLayout"
 import SupportDeCoursSVG from '../components/svgs/SupportDeCours';
 import TasksSVG from '../components/svgs/Tasks';
 
@@ -17,7 +17,7 @@ function Modules() {
           <Col className="gutter-row" md={{ span: 3, offset: 1 }} lg={{ span: 6, offset: 2 }}>
             <Card bordered={false} hoverable
               style={{ width: 160, height: 170 }}
-              cover={<ShareScreenSVG />
+              cover={<Link to="/screenShare"><ShareScreenSVG/></Link>
               }
             >
             </Card>

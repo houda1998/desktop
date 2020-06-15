@@ -1,6 +1,6 @@
 import React from "react";
 import StudentList from "../components/StudentsList"
-import Layout from "../components/Layout"
+import Layout from "../components/CourseLayout"
  
 function Student() {
   return (
