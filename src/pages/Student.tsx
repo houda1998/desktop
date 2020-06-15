@@ -29,7 +29,6 @@ function StudentList() {
    myusers.push(user) 
  })
  console.log(users || [])
-  const [visible, showModal] = useState(false)
   const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 16 },
@@ -45,22 +44,10 @@ function StudentList() {
     Fullname: string,
     email:string,
     filiere:string
-    action:any;
   }
 
 
-  const more = (
-    
-      <Menu>
-        <Menu.Item className="mydropdown" onClick={() => showModal(!visible)}>
-        
-            modifier
-         
-        </Menu.Item>
-      </Menu>
-      
-    
-    );
+  
 
     const columns: ColumnProps<User>[] = [{
       
@@ -108,19 +95,7 @@ function StudentList() {
         dataIndex: 'filiere',
         key: 'filiere',
       },
-      {
-        title: 'Action',
-        dataIndex: 'action',
-        key: 'action',
-        render:()=>(
-          <Dropdown overlay={more}>
-          <a className="ant-dropdown-link">           
-          <SmallDashOutlined />
-          </a>
-        </Dropdown>
-        ),
-      },
-    ];
+    ]
     //*******************************************return ************************//
     return (
     <Layout>
@@ -129,38 +104,7 @@ function StudentList() {
     </div>
    
     <Table columns={columns} dataSource={users || []} />
-    <Modal
-    title="modifier étudiant"
-    visible={visible}
-    onCancel={()=> showModal(false)}
-        footer={[
-          <Button form="myForm" key="creer" htmlType="submit">
-             creer
-          </Button>,
-          <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
-              cancel
-          </Button>
-          ]}
-  >
-  <Form {...layout} form={form} name="control-hooks" id="myForm">
-  
-  <Form.Item name="FullName" label="fullName" rules={[{ required: true }]}>
-      <Input type="text" />
-    </Form.Item>      
-    <Form.Item name="Email" label="Email" rules={[{ required: true }]}>
-    <Input type="email" />
-  </Form.Item>      
-  <Form.Item name="password" label="Password" rules={[{ required: true }]}>
-  <Input type="password" />
-  </Form.Item>
-  <Form.Item name="confirm" label="Confirm" rules={[{ required: true }]}>
-  <Input type="password" />
-  </Form.Item>      
-    <Form.Item {...tailLayout}>
-    </Form.Item>
-  </Form>
-  
-  </Modal>
+    
     </Layout>)
 };
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button } from 'antd'
 import Layout from "../components/CourseLayout"
+import Sider from 'antd/lib/layout/Sider'
+import ScreenShareLayout from '../components/ScreenShareLayout'
 const RTCmulticonnection = require("rtcmulticonnection")
 let hasjoined = false
 function ScreenShare() {
@@ -79,8 +81,9 @@ function ScreenShare() {
     },[stream])
 
     return (
-        <Layout>
-            <video controls id="videos-container" ref={videoContainer}   height={500} ></video>
+        <ScreenShareLayout>
+            <video controls id="videos-container" ref={videoContainer}   height={500} style={{width:"-webkit-fill-available"}} ></video>
+            <br></br>
             <Button 
             disabled={!canShareScreen}
             onClick={()=> {
@@ -89,8 +92,8 @@ function ScreenShare() {
                     });
             }}
             >Screen Share</Button>
-       
-        </Layout>
+            
+        </ScreenShareLayout>
     )
 }
 

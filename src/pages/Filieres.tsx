@@ -5,6 +5,9 @@ import PlusButton from '../components/svgs/PlusButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAll, deleteOne } from '../redux/actions/models'
 import CreateFiliereModal from '../components/CreateFiliereModal'
+import {  BarsOutlined,UsergroupDeleteOutlined,EditOutlined} from '@ant-design/icons'
+import { Link } from 'react-router-dom';
+
 function Filieres() {
     const [visible, showModal] = useState(false)
     const dispatch = useDispatch()
@@ -18,9 +21,9 @@ function Filieres() {
                 <Table
                     columns={[{ title: "Titre", dataIndex: 'title', key: 'id', width:"60%"},
                      {title:"", render:(cell, row, index) => <>
-                     <Button type="primary">Afficher</Button>  
-                     <Button type="dashed">Modifier</Button>  
-                     <Button danger onClick={() => dispatch(deleteOne("filiers", filieres[index].id))}>Supprimer</Button></>},
+                     <Link to="/StudentsFiliere"><Button type="primary"><BarsOutlined /></Button></Link>  
+                     <Button type="dashed"><EditOutlined /></Button>  
+                     <Button danger onClick={() => dispatch(deleteOne("filiers", filieres[index].id))}><UsergroupDeleteOutlined /></Button></>},
                     ]}
                     dataSource={filieres || []}
                 />

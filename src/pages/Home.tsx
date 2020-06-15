@@ -11,10 +11,7 @@ import HomeLayout from "../components/HomeLayout"
 
 function Home() {
   const [visible, showModal] = useState(false)
-  const [Collapsed,setCollapsed]=useState(false);
-  const onCollapse=()=>{
-    setCollapsed(!Collapsed)
-  }
+  
   const dispatch = useDispatch()
    const cours :any = useSelector((state:any) => state.models["cours"])
   useEffect(() => {

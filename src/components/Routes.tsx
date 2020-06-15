@@ -9,17 +9,16 @@ import Settings from '../pages/settings';
 import StudentTask from '../pages/StudentTask';
 import Filieres from '../pages/Filieres';
 import ScreenShare from "../pages/ScreenShare"
+import FiliereListStudent from '../pages/FiliereListStudent';
 function Routes() {
     return (
         <Switch>
             <Route path="/home">
               <Home/>
             </Route>
-
             <Route path="/students/:courseId">
             <Student/>
             </Route>
-        
             <Route path="/fileSharing">
             <FilesList/>
             </Route>
@@ -40,6 +39,9 @@ function Routes() {
             </Route>
             <Route path="/module/:courseId/screenShare">
               <ScreenShare/>
+              </Route>
+              <Route exact path="/StudentsFiliere">
+              <FiliereListStudent/>
               </Route>
         </Switch>
     )
