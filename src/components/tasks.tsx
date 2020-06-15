@@ -16,7 +16,7 @@ function MyTasks() {
     actions={[
         <DeleteOutlined  key="delete" />,
         <EditOutlined key="edit" onClick={() => showModal(!visible)}/>,
-        <FolderOpenOutlined key="open"/>
+        <Link to="/StudentTask"><FolderOpenOutlined key="open"/></Link>
       ]}
     >réaliser ce travail en groupe bla bla bla </Card>
     </Panel>
@@ -25,7 +25,7 @@ function MyTasks() {
     actions={[
         <DeleteOutlined  key="delete"/>,
         <EditOutlined key="edit" onClick={() => showModal(!visible)}/>,
-        <Link to=""><FolderOpenOutlined key="open"/></Link>
+        <Link to="/StudentTask"><FolderOpenOutlined key="open"/></Link>
       ]
     }
     >réaliser ce travail en groupe bla bla bla</Card>

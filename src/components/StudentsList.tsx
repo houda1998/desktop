@@ -1,10 +1,12 @@
-import React,{useState,Component} from 'react'
+import React,{useState,Component, useEffect} from 'react'
 import { Upload, message,Modal,Table,Dropdown, Input,Tag, Button,Layout, Menu, Breadcrumb,Form } from 'antd';
 import { SmallDashOutlined,  SearchOutlined} from '@ant-design/icons'
 import 'antd/dist/antd.css';
 import './css/StudentList.css';
 import '@ant-design/compatible/assets/index.css';
 import { ColumnProps } from 'antd/es/table';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAll } from '../redux/actions/models';
 
     let color='';
     let stat='';
@@ -16,11 +18,20 @@ import { ColumnProps } from 'antd/es/table';
 function StudentList() {
               
   //************************************  CONSTANTES  ********************************************//
- 
+  const dispatch = useDispatch()
+  const users :any = useSelector((state:any) => state.models["users"])
+ useEffect(() => {
+   dispatch(fetchAll("users"))
+ }, []) 
+
+ const myusers:any=[]
+ const getusers=(users || []).map((user:any)=>{
+   myusers.push(user) 
+ })
+ console.log(users || [])
   const [visible, showModal] = useState(false)
-  const [visi, showModal2] = useState(false)
   const layout = {
-    labelCol: { span: 8 },
+    labelCol: { span: 6 },
     wrapperCol: { span: 16 },
   };
   const tailLayout = {
@@ -33,33 +44,15 @@ function StudentList() {
     AccountStatut:boolean,
     Fullname: string,
     email:string,
-    filliere:string
+    filiere:string
     action:any;
   }
-  const data: User[] = [
-    {
-  key: 0,
-  AccountStatut:true,
-  Fullname: 'Jack jacky',
-  email:"jack@gmail.com",
-  filliere:"bdcc",
-  action:"",
-    },
-    {
-      key: 1,
-      AccountStatut:false,
-      Fullname: 'Lola lili',
-      email:"Lola@gmail.com",
-      filliere:"bdcc",
-      action:"",
-      },
-];
 
 
   const more = (
     
       <Menu>
-        <Menu.Item className="mydropdown" onClick={() => showModal2(!visi)}>
+        <Menu.Item className="mydropdown" onClick={() => showModal(!visible)}>
         
             modifier
          
@@ -72,20 +65,25 @@ function StudentList() {
     const columns: ColumnProps<User>[] = [{
       
           title: 'AccountStatut',
-          dataIndex: 'AccountStatut',
+          dataIndex: 'isActive',
           key: 'AccountStatut',
            render:(cell, row, index) => 
            { 
-             if(data[index].AccountStatut==true){
+
+               if(myusers[index].isActive ==true){
                color='#5DF888';
                stat='active';
+              
              }
              else
              {
                color="#FF4949";
-               stat="down"
+               stat="down";
+               
              }
             
+           
+             
             return (
               
               <Tag color={color} key={stat} className="stat">
@@ -95,18 +93,9 @@ function StudentList() {
         },
       {
         title: 'FullName',
-        dataIndex: 'Fullname',
+        dataIndex: 'name',
         key: 'Fullname',
-        render:(cell,row,index)=>{
-          let name=data[index].Fullname;
-          return (
-            <div>
-             {name}
-            </div>
-
-          )
-        }
-
+       
         
       },
       {
@@ -115,9 +104,9 @@ function StudentList() {
         key: 'email',
       },
       {
-        title: 'filliere',
-        dataIndex: 'filliere',
-        key: 'filliere',
+        title: 'filiere',
+        dataIndex: 'filiere',
+        key: 'filiere',
       },
       {
         title: 'Action',
@@ -139,16 +128,16 @@ function StudentList() {
     <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />}/>
     </div>
    
-    <Table<User> columns={columns} dataSource={data} />
+    <Table columns={columns} dataSource={users || []} />
     <Modal
     title="modifier étudiant"
-    visible={visi}
-    onCancel={()=> showModal2(false)}
+    visible={visible}
+    onCancel={()=> showModal(false)}
         footer={[
           <Button form="myForm" key="creer" htmlType="submit">
              creer
           </Button>,
-          <Button  key="cancel" htmlType="button" onClick={() => showModal2(false)}>
+          <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
               cancel
           </Button>
           ]}

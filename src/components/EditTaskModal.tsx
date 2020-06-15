@@ -7,7 +7,7 @@ const tailLayout = {
   };
 
 const layout = {
-    labelCol: { span: 8 },
+    labelCol: { span: 6 },
     wrapperCol: { span: 16 },
 };
 

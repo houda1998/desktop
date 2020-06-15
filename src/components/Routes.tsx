@@ -5,9 +5,10 @@ import Student from '../pages/Student';
 import Module from '../pages/module';
 import FilesList from '../pages/files';
 import TasksTest from '../pages/tasks';
+import Settings from '../pages/settings';
+import StudentTask from '../pages/StudentTask';
 import Filieres from '../pages/Filieres';
 import ScreenShare from "../pages/ScreenShare"
-
 function Routes() {
     return (
         <Switch>
@@ -15,23 +16,29 @@ function Routes() {
               <Home/>
             </Route>
             <Route path="/Student">
-            <Student></Student>
+            <Student/>
             </Route>
             <Route path="/module">
-            <Module></Module>
+            <Module/>
             </Route>
             <Route path="/fileSharing">
-            <FilesList></FilesList>
+            <FilesList/>
             </Route>
             <Route path="/tasks">
             <TasksTest/>
+            </Route>
+            <Route path="/settings">
+            <Settings></Settings>
+            </Route>
+            <Route path="/StudentTask">
+            <StudentTask/>
             </Route>
             <Route path="/filieres">
             <Filieres/>
             </Route>
             <Route path="/screenShare">
               <ScreenShare/>
-            </Route>
+              </Route>
         </Switch>
     )
 }
