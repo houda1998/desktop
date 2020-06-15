@@ -1,14 +1,36 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button } from 'antd'
 import Layout from "../components/CourseLayout"
-import {desktopCapturer}  from 'electron';
 const RTCmulticonnection = require("rtcmulticonnection")
+let hasjoined = false
 function ScreenShare() {
     const [connection, setConnection] = useState<any>(null)
     const [stream, setStream] = useState<any>(null)
+    const [canShareScreen, setCanShare] = useState(false)
     const videoContainer = useRef<HTMLVideoElement>(null);
+
     useEffect(() => {
-        setConnection(new RTCmulticonnection())
+        const connection = new RTCmulticonnection()
+        setConnection(connection)
+
+       const interval =  setInterval(()=>{
+            connection.checkPresence("hehe xd",function(isSharing:any){
+                setCanShare(!isSharing)
+                connection.sdpConstraints.mandatory = {
+                    OfferToReceiveAudio: false,
+                    OfferToReceiveVideo: true
+                };
+               /* if(isSharing && !hasjoined){
+                    hasjoined = true
+                    connection?.join("hehe xd");
+                }*/
+            })
+        },1000)
+
+        return ()=> {
+            console.log("removing interval ")
+            clearInterval(interval)
+        }
     }, [])
 
     useEffect(() => {
@@ -30,19 +52,17 @@ function ScreenShare() {
         connection.videosContainer = document.getElementById('videos-container');
         connection.onstream = function (event : any) {
             console.log("on strem")
-
+            setCanShare(false)
             setStream(event.stream)
         };
 
         connection.onstreamended = function (event:any) {
-            var mediaElement:any = document.getElementById(event.streamid);
-            if (mediaElement) {
-                mediaElement.parentNode.removeChild(mediaElement);
-
-                if (event.userid === connection.sessionid && !connection.isInitiator) {
-                    alert('Broadcast is ended. We will reload this page to clear the cache.');
-                    //location.reload();
-                }
+            connection.closeSocket(
+            )
+            hasjoined = false
+            if(videoContainer?.current){
+                videoContainer.current.pause()
+                videoContainer.current.srcObject = null
             }
         };
 
@@ -57,37 +77,19 @@ function ScreenShare() {
             videoContainer.current.play()
         }
     },[stream])
-    useEffect(()=>{
-        if(connection){
-            connection.checkPresence("hehe xd",function(xd:any){console.log(xd)})
-            
-        }
-     })
+
     return (
         <Layout>
-            <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
             <video controls id="videos-container" ref={videoContainer}   height={500} ></video>
-            <Button onClick={()=> {
-                desktopCapturer.getSources({ types:['window', 'screen'] }).then ((sources)=>{
-                    console.log(sources)
+            <Button 
+            disabled={!canShareScreen}
+            onClick={()=> {
                     connection?.open("hehe xd", function() {
                         console.log("sharing is caring !")
                     });
-                })
-              
             }}
             >Screen Share</Button>
        
-            <Button onClick={()=> {
-                if(connection)
-                    connection.sdpConstraints.mandatory = {
-                        OfferToReceiveAudio: false,
-                        OfferToReceiveVideo: true
-                    };
-                    connection?.join("hehe xd");
-            }}>View Share</Button>
-
-
         </Layout>
     )
 }

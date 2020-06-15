@@ -3,6 +3,8 @@ import { Form, Modal, Layout, Menu, Breadcrumb, Card, Col, Row, Input, Button } 
 const { Header, Content, Sider } = Layout;
 import NGCLogo from "../components/svgs/NGCLogo"
 import { Link } from 'react-router-dom';
+import {  SettingFilled} from '@ant-design/icons'
+
 
 function HomeLayout({children}:any) {
     return (
@@ -25,6 +27,8 @@ function HomeLayout({children}:any) {
           <Menu.Item key="2" style={{color:'rgba(0, 0, 0, 0.65)'}}>
             <Link to="/filieres">filiers</Link>
             </Menu.Item>
+            <Menu.Item key="4" icon={<SettingFilled style={{color:"rgba(206, 47, 142, 0.61)"}}/>} style={{color:'rgba(0, 0, 0, 0.65)'}}><Link to="/settings">settings</Link></Menu.Item>
+
         </Menu>
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>

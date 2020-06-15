@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout,Statistic } from 'antd'
 const { Header, Footer, Sider, Content } = Layout;
-import MyLayout from "../components/Layout"
+import MyLayout from "../components/HomeLayout"
 import '../components/css/StudentTask.css';
 import StudentListTask from '../components/StudentListTask';
 import Time from '../components/svgs/Time';

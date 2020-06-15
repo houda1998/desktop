@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from "../components/Layout"
+import Layout from "../components/HomeLayout"
 import { Form, Input, Button } from 'antd';
 import SettingsSVG from "../components/svgs/settings"
 function Settings() {

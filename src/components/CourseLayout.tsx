@@ -4,12 +4,15 @@ import NGCLogo from "./svgs/NGCLogo"
 const { Header, Content, Sider } = Layout;
 import ModelSvg from "./svgs/Model"
 import StudentSvg from "./svgs/StudentSvg"
-import {  SettingFilled} from '@ant-design/icons'
-import { Link } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import './css/Layout.css';
+import CourseBreadCrumb from './CourseBreadCrumb';
  
 function MyLayout({children}:any) {
   const [Collapsed,setCollapsed]=useState(false);
+  const {courseId} = useParams()
+
+  const location = useLocation()
   const onCollapse=()=>{
     setCollapsed(!Collapsed)
   }
@@ -19,27 +22,26 @@ function MyLayout({children}:any) {
         <NGCLogo/>
         </Header>
         <Layout>
-          <Sider width={200} style={{ background: '#fff' }} collapsedWidth="0" className='Sider' collapsible collapsed={Collapsed} onCollapse={onCollapse} >
+          <Sider  width={200} style={{ background: '#fff' }} collapsedWidth="0" className='Sider' collapsible collapsed={Collapsed} onCollapse={onCollapse} >
           <Menu
           mode="inline"
-          defaultSelectedKeys={['1']}
+          selectedKeys={location.pathname.split("/")}
           defaultOpenKeys={['sub1']}
           style={{ height: '100%', borderRight: 0 }}
+          
         >
           
-          <Menu.Item key="1" icon={<ModelSvg />}style={{color:'rgba(0, 0, 0, 0.65)'}}>
-            <Link to="/module">modules</Link>
+          <Menu.Item key="module" icon={<ModelSvg />}style={{color:'rgba(0, 0, 0, 0.65)'}} >
+            <Link to={"/module/"+courseId}>modules</Link>
+          </Menu.Item>
+            <Menu.Item key="students" icon={<StudentSvg />}style={{color:'rgba(0, 0, 0, 0.65)'}}>
+              <Link to={"/students/"+courseId}>Students</Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<StudentSvg />}style={{color:'rgba(0, 0, 0, 0.65)'}}><Link to="/Student">Students</Link></Menu.Item>
-            <Menu.Item key="4" icon={<SettingFilled style={{color:"rgba(206, 47, 142, 0.61)"}}/>} style={{color:'rgba(0, 0, 0, 0.65)'}}><Link to="/settings">settings</Link></Menu.Item>
           
         </Menu>
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item><Link to="/home">Home</Link></Breadcrumb.Item>
-              <Breadcrumb.Item>Modules</Breadcrumb.Item>
-            </Breadcrumb>
+             <CourseBreadCrumb/>
             <Content className='menu'>
             {children}
             </Content>

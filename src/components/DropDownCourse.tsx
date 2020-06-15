@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Menu, Modal, Button,Popconfirm, Form, Input, Select, Dropdown,Upload, message} from 'antd';
 import {LoadingOutlined, PlusOutlined,SettingOutlined,EditOutlined,DeleteOutlined} from '@ant-design/icons';
 import './css/file.css';
+import {useDispatch} from "react-redux"
+import { deleteOne } from '../redux/actions/models';
 function handleChange(value:any) {
     console.log(`selected ${value}`);
   }
@@ -32,11 +34,13 @@ function handleChange(value:any) {
     message.error('Click on No');
   }
   
-function DropDownCourse() {
+function DropDownCourse({id}:any) {
   const [visible, showEditModal] = useState(false)
     const { Option } = Select;
     const [loading,setLoading] = useState(false)
     const[image,setImage]=useState()
+    const dispatch = useDispatch()
+
     const handleChange = (info:any) => {
         if (info.file.status === 'uploading') {
           setLoading(true);
@@ -64,7 +68,7 @@ function DropDownCourse() {
           <EditOutlined />edit
           </Menu.Item>
           <Menu.Divider />
-          <Menu.Item key="1" className="mydropdown" >
+          <Menu.Item key="1" className="mydropdown" onClick={() => dispatch(deleteOne("cours",id)) } >
             <DeleteOutlined /> delete
           </Menu.Item>
         </Menu>

@@ -15,12 +15,11 @@ function Routes() {
             <Route path="/home">
               <Home/>
             </Route>
-            <Route path="/Student">
+
+            <Route path="/students/:courseId">
             <Student/>
             </Route>
-            <Route path="/module">
-            <Module/>
-            </Route>
+        
             <Route path="/fileSharing">
             <FilesList/>
             </Route>
@@ -36,7 +35,10 @@ function Routes() {
             <Route path="/filieres">
             <Filieres/>
             </Route>
-            <Route path="/screenShare">
+            <Route exact path="/module/:courseId">
+            <Module/>
+            </Route>
+            <Route path="/module/:courseId/screenShare">
               <ScreenShare/>
               </Route>
         </Switch>
