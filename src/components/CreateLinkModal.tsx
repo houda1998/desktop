@@ -3,6 +3,7 @@ import { Modal, Button, Form, Input,Upload, message } from 'antd';
 import {InboxOutlined } from '@ant-design/icons'
 import { useDispatch } from 'react-redux';
 import { addOne } from '../redux/actions/models';
+import { useParams } from 'react-router-dom';
 
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
@@ -18,9 +19,9 @@ function CreateLinkModal({showModal,visible} : any) {
     const [form] = Form.useForm();
     const dispatch = useDispatch()
     const [link, setLink] = useState({})
-
+    const{courseId} = useParams()
     const addLink = () => {
-      dispatch(addOne("links",link))
+      dispatch(addOne("links",{...link,cours:courseId}))
       showModal(false)
     }
     return (

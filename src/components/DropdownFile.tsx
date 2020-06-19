@@ -3,6 +3,8 @@ import { Menu, Modal, Button, Form, Input, Select, Dropdown,Upload, message} fro
 import {EditOutlined,InboxOutlined,SmallDashOutlined,DeleteOutlined} from '@ant-design/icons';
 import './css/file.css';
 import Dragger from 'antd/lib/upload/Dragger';
+import { deleteOne } from '../redux/actions/models';
+import { useDispatch } from 'react-redux';
 const statut = {
     name: 'file',
     multiple: true,
@@ -20,16 +22,18 @@ const statut = {
     },
   };
   
-function DropDownFile() {
+function DropDownFile({file}:any) {
   const [visible, showModal] = useState(false)
   const [form] = Form.useForm();
+  const dispatch = useDispatch()
+
     const FileAction = (
     <div>
       <Menu>
-        <Menu.Item className="mydropdown">
-          <a target="_blank" rel="noopener noreferrer" href="">
+        <Menu.Item className="mydropdown" onClick={()=>{
+          dispatch(deleteOne("documents",file.id))
+        }}>
             <DeleteOutlined/>delete
-          </a>
         </Menu.Item>
         <Menu.Item className="mydropdown" onClick={() => showModal(!visible)} >
            <EditOutlined/>edit

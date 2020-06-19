@@ -7,9 +7,13 @@ import { fetchAll, deleteOne } from '../redux/actions/models'
 import CreateFiliereModal from '../components/CreateFiliereModal'
 import {  BarsOutlined,UsergroupDeleteOutlined,EditOutlined} from '@ant-design/icons'
 import { Link } from 'react-router-dom';
+import EditFiliereModal from '../components/EditFiliereModal'
 
 function Filieres() {
-    const [visible, showModal] = useState(false)
+    const [isCreateModalVisible, showCreateModalVisible] = useState(false)
+    const [isEditModalVisible, showEditModalVisible] = useState(false)
+
+    const [filiereToEdit, setFiliereToEdit] = useState(null)
     const dispatch = useDispatch()
     const filieres: any = useSelector((state: any) => state.models["filiers"])
     useEffect(() => {
@@ -21,17 +25,21 @@ function Filieres() {
                 <Table
                     columns={[{ title: "Titre", dataIndex: 'title', key: 'id', width:"60%"},
                      {title:"", render:(cell, row, index) => <>
-                     <Link to="/StudentsFiliere"><Button type="primary"><BarsOutlined /></Button></Link>  
-                     <Button type="dashed"><EditOutlined /></Button>  
+                     <Link to={`/filieres/${filieres[index].id}/studentsList`}><Button type="primary"><BarsOutlined /></Button></Link>  
+                     <Button type="dashed" onClick={() => {
+                         setFiliereToEdit(filieres[index])
+                         showEditModalVisible(true)
+                         }}><EditOutlined /></Button>  
                      <Button danger onClick={() => dispatch(deleteOne("filiers", filieres[index].id))}><UsergroupDeleteOutlined /></Button></>},
                     ]}
                     dataSource={filieres || []}
                 />
             </div>
             <div className="footer">
-                <PlusButton showModal={() => showModal(!visible)} />
+                <PlusButton showModal={() => showCreateModalVisible(!isCreateModalVisible)} />
             </div>
-            <CreateFiliereModal showModal = {showModal} visible={visible}/>
+            <CreateFiliereModal visible = {isCreateModalVisible} showModal={showCreateModalVisible}/>
+            <EditFiliereModal filiere={filiereToEdit} visible = {isEditModalVisible} showModal={showEditModalVisible}/>
         </HomeLayout>
     )
 }

@@ -11,17 +11,16 @@ const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
 };
-function handleChange(value:any) {
-  console.log(`selected ${value}`);
-}
+
 
 function CreateFiliereModal({showModal,visible} : any) {
   const [form] = Form.useForm();
-  const [filiere, setfiliere] = useState({})
+  const [filiere, setfiliere] = useState<any>({})
   const { Option } = Select;
   const dispatch = useDispatch()
   const addfiliere = () => {
     dispatch(addOne("filiers",filiere))
+    form.setFieldsValue({title:""})
     showModal(false)
   }
     return (
@@ -39,10 +38,10 @@ function CreateFiliereModal({showModal,visible} : any) {
         ]}
       >
         <Form {...layout} form={form} name="control-hooks" id="myForm">
-          <Form.Item name="title" label="Nom du filiere" rules={[{ required: true }]}>
+          <Form.Item name="title" label="Nom du filiere" rules={[{ required: true }]} >
             <Input style={{ marginLeft: "12px" }}  onChange={(e) => {
               e.persist()
-              setfiliere(filiere => ({...filiere,title:e.target.value}))
+              setfiliere((filiere:any) => ({...filiere,title:e.target.value}))
             }}/>
           </Form.Item>
         </Form>

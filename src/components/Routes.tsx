@@ -19,9 +19,7 @@ function Routes() {
             <Route path="/students/:courseId">
             <Student/>
             </Route>
-            <Route path="/fileSharing">
-            <FilesList/>
-            </Route>
+            
             <Route path="/tasks">
             <TasksTest/>
             </Route>
@@ -31,18 +29,21 @@ function Routes() {
             <Route path="/StudentTask">
             <StudentTask/>
             </Route>
-            <Route path="/filieres">
+            <Route exact path="/filieres">
             <Filieres/>
+            </Route>
+            <Route exact path="/filieres/:filierId/studentsList">
+              <FiliereListStudent/>
             </Route>
             <Route exact path="/module/:courseId">
             <Module/>
             </Route>
             <Route path="/module/:courseId/screenShare">
               <ScreenShare/>
-              </Route>
-              <Route exact path="/StudentsFiliere">
-              <FiliereListStudent/>
-              </Route>
+            </Route>
+            <Route path="/module/:courseId/fileSharing">
+              <FilesList/>
+            </Route>
         </Switch>
     )
 }

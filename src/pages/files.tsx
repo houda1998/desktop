@@ -6,7 +6,7 @@ import { SearchOutlined ,FilePdfOutlined,FileWordOutlined
 import '../components/css/file.css';
 import '@ant-design/compatible/assets/index.css';
 import { ColumnProps } from 'antd/es/table';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Layout from "../components/CourseLayout";
 import MaterialList from "../components/File";
 import PlusButton from "../components/svgs/PlusButton";
@@ -16,6 +16,7 @@ import DropDownFile from "../components/DropdownFile";
 import {useDispatch, useSelector} from "react-redux"
 import { fetchAll } from "../redux/actions/models";
 import CreateLinkModal from '../components/CreateLinkModal';
+import { RequestQueryBuilder, CondOperator } from "@nestjsx/crud-request";
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
@@ -29,30 +30,20 @@ function FilesList() {
   const [visible, showCreateFileModal] = useState(false)
   const [visible2, showCreateLinkModal] = useState(false)
   const dispatch = useDispatch()
-const link :any = useSelector((state:any) => state.models["links"])
+  const {courseId} = useParams()
+const links :any = useSelector((state:any) => state.models["links"])
+const documents :any = useSelector((state:any) => state.models["documents"])
+console.log(documents)
 useEffect(() => {
-  dispatch(fetchAll("links"))
-}, [])
+  const query = RequestQueryBuilder.create()
+  query
+  .setFilter({field:"cours.id",operator:CondOperator.EQUALS,value:courseId})
 
-  const statut = {
-    name: 'file',
-    multiple: true,
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    onChange(info:any) {
-      const { status } = info.file;
-      if (status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
+  dispatch(fetchAll("documents",query.query()))
+  dispatch(fetchAll("links",query.query()))
+
+}, [])
   
-const [form] = Form.useForm();
-const { Dragger } = Upload;
 var icone=<></>
 const { Panel } = Collapse;
 function callback(key:any) {
@@ -61,75 +52,53 @@ function callback(key:any) {
 
 interface File {
   key: number,
-  name:string,
+  title:string,
   type: string,
-  link:string,
+  url:string,
   date:string,
   action:any;
 }
-  
-  const data: File[] = [
-    {
-  key: 0,
-  name:"controle",
-  link:"test.pdf",
-  type:"pdf",
-  date:"05/05/2020 16:00",
-  action:"",
-    },
-    {
-      key: 1,
-      name:"controle2",
-      link:"test.pdf",
-      type:"doc",
-      date:"04/05/2020 23:00",
-      action:"",
-      },
-];
-
-
-  
 
     const columnsFile: ColumnProps<File>[] = [{
       
-          title: 'name',
-          dataIndex: 'name',
-          key: 'name',
-          render:(cell, row, index) => 
-          { 
-            switch (data[index].type) {
-              case "pdf": icone=<FilePdfOutlined />
-              break;
-              case "doc":icone=<FileWordOutlined />
-              break;
-              case "jpg":icone=<FileImageOutlined />
-              break;
-              case "xsl":icone=<FileExcelOutlined />
-              break;
-              case"ppt":icone=<FilePptOutlined />
-                break;
-            
-              default:icone=<FileTextOutlined />
-                break;
-            }
-           
-           return (
-             
-             <div>
-            {icone}{" "} {data[index].name} 
-             </div>
-           ) } 
+          title: 'title',
+          dataIndex: 'title',
+          key: 'title',
         },
       {
         title: 'type',
         dataIndex: 'type',
         key: 'type',
+        render:(cell, row, index) => 
+        { 
+          switch (documents[index].type) {
+            case "pdf": icone=<FilePdfOutlined />
+            break;
+            case "doc":icone=<FileWordOutlined />
+            break;
+            case "jpg":icone=<FileImageOutlined />
+            break;
+            case "xsl":icone=<FileExcelOutlined />
+            break;
+            case"ppt":icone=<FilePptOutlined />
+              break;
+          
+            default:icone=<FileTextOutlined />
+              break;
+          }
+         
+         return (
+           
+           <div>
+          {icone}
+           </div>
+         ) } 
       },
       {
-        title: 'link',
-        dataIndex: 'link',
-        key: 'link',
-      
+        title: 'url',
+        dataIndex: 'url',
+        key: 'url',
+      render:(cell, row, index) => (<a href={`http://localhost:3009/documents/files/${documents[index].url}`} target="_blank">{documents[index].url}</a>)
       },
       {
         title: 'date  ',
@@ -142,8 +111,8 @@ interface File {
         title: 'Action',
         dataIndex: 'action',
         key: 'action',
-        render:()=>(
-          <DropDownFile></DropDownFile>
+        render:(cell, row, index)=>(
+          <DropDownFile file={documents[index]} ></DropDownFile>
         ),
       },
     ];
@@ -175,19 +144,19 @@ interface File {
             key: 'url',
           
           },
-          {
+          /*{
             title: 'date  ',
             dataIndex: 'createdAt',
             key: 'date',
            
             
-          },
+          },*/
           {
             title: 'Action',
             dataIndex: 'action',
             key: 'action',
-            render:()=>(
-             <DropDownLink/>
+            render:(cell, row, index)=>(
+             <DropDownLink link={links[index]}/>
             ),
           },
         ];
@@ -200,7 +169,7 @@ interface File {
     <div style={{paddingBottom:"55px",position:"sticky"}}>
       <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />}/>
       </div>
-      <Table<File> columns={columnsFile} dataSource={data} /> 
+      <Table<File> columns={columnsFile} dataSource={documents} /> 
       <PlusButton showModal={() => showCreateFileModal(!visible)} />
     <CreateFileModal visible={visible} showModal = {showCreateFileModal}/>
     </Panel>
@@ -208,7 +177,7 @@ interface File {
     <div style={{paddingBottom:"55px",position:"sticky"}}>
       <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />}/>
       </div>
-    <Table columns={columnsLink} dataSource={link || []} /> 
+    <Table columns={columnsLink} dataSource={links || []} /> 
     <PlusButton showModal={() => showCreateLinkModal(!visible2)} />
     <CreateLinkModal visible={visible2} showModal = {showCreateLinkModal}/>
     </Panel>

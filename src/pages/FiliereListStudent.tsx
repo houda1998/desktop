@@ -8,14 +8,21 @@ import { ColumnProps } from 'antd/es/table';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAll } from '../redux/actions/models';
 import HomeLayout from '../components/HomeLayout';
+import { useParams } from 'react-router-dom';
+import { RequestQueryBuilder } from "@nestjsx/crud-request";
+
     let color='';
     let stat='';
 
 function FiliereListStudent() {
     const dispatch = useDispatch()
     const users :any = useSelector((state:any) => state.models["users"])
+
+    const {filierId} = useParams()
    useEffect(() => {
-     dispatch(fetchAll("users"))
+    const qb = RequestQueryBuilder.create();
+    qb.setFilter({field:"filiere.id",operator:"$eq",value:filierId})
+     dispatch(fetchAll("users",qb.query()))
    }, []) 
   
    const myusers:any=[]

@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form, Input, Select } from 'antd';
-import { useDispatch} from "react-redux"
-import {addOne} from "../redux/actions/models"
-
+import { useDispatch, useSelector} from "react-redux"
+import {addOne, fetchAll} from "../redux/actions/models"
+import MultipleInputSelect from "./MultipleInputSelect"
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
   };
@@ -11,16 +11,24 @@ const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
 };
-function handleChange(value:any) {
-  console.log(`selected ${value}`);
-}
+
 
 function CreateCoursModal({showModal,visible} : any) {
   const [form] = Form.useForm();
   const [cours, setCours] = useState({})
+  const filiers = useSelector((state:any) => state.models["filiers"])
+
   const { Option } = Select;
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchAll("filiers"))
+  }, [])
+
+  function handleAddFiliere(filiersIds:number[]) {
+    setCours((cours) => ({...cours,filiers:filiersIds.map(id =>({id}))}))
+  }
   const addCours = () => {
+    console.log(cours)
     dispatch(addOne("cours",cours))
     showModal(false)
   }
@@ -51,32 +59,14 @@ function CreateCoursModal({showModal,visible} : any) {
               setCours(cours => ({...cours,anneeScolaire:e.target.value}))
             }} />
           </Form.Item>
-          <Form.Item name="filliere" label="Fillière(s)" rules={[{ required: true }]}>
-             <Input style={{ marginLeft: "12px" }} onChange={(e) => {
-               e.persist()
-             setCours(cours => ({...cours,filiere:e.target.value}))
-             }}/>
-            
-          </Form.Item>
-          <Form.Item name="fillieres" label="Fillière(s)" >
-          <Select
-    mode="multiple"
-    style={{ width: '100%' }}
-    placeholder="selectionnez fillière"
-    onChange={handleChange}
-    optionLabelProp="label"
-  >
-    <Option value="bdcc" label="bdcc">
-      <div className="demo-option-label-item">
-        bdcc
-      </div>
-    </Option>
-    <Option value="glsid" label="glsid">
-      <div className="demo-option-label-item">
-      glsid
-      </div>
-    </Option>
-  </Select>
+          <Form.Item name="filiers" label="Fillière(s)" >
+              <MultipleInputSelect 
+              values={filiers}
+              placeHolder="selectionnez les fillières"
+              key="id"
+              title="title"
+              handleChange={handleAddFiliere}
+              />
           </Form.Item>
           <Form.Item {...tailLayout}>
           </Form.Item>

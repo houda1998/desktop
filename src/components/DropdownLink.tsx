@@ -2,17 +2,20 @@ import React, { useState } from 'react'
 import { Menu, Modal, Button, Form, Input, Select, Dropdown,Upload, message} from 'antd';
 import {EditOutlined,SmallDashOutlined,DeleteOutlined} from '@ant-design/icons';
 import './css/file.css';
+import { useDispatch } from 'react-redux';
+import { deleteOne } from '../redux/actions/models';
 
   
-function DropDownLink() {
+function DropDownLink({link}:any) {
   const [visible, showEditLinkModal] = useState(false)
+  const dispatch = useDispatch()
   const LinkAction = (
     <div>
       <Menu>
-        <Menu.Item className="mydropdown">
-          <a target="_blank" rel="noopener noreferrer" href="">
+        <Menu.Item className="mydropdown" onClick={()=>{
+          dispatch(deleteOne("links",link.id))
+        }}>
           <DeleteOutlined/> delete
-          </a>
         </Menu.Item>
         <Menu.Item className="mydropdown" onClick={() => showEditLinkModal(!visible)} >
         <EditOutlined/>edit

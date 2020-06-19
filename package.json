@@ -93,6 +93,7 @@
     },
     "dependencies": {
         "@ant-design/compatible": "^1.0.2",
+        "@nestjsx/crud-request": "^4.6.2",
         "@types/electron-devtools-installer": "^2.2.0",
         "@types/react": "^16.9.19",
         "@types/react-dom": "^16.9.5",

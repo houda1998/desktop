@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form, Input,Upload, message } from 'antd';
 import {InboxOutlined } from '@ant-design/icons'
+import { useDispatch } from 'react-redux';
+import { addOne } from '../redux/actions/models';
+import { useParams } from 'react-router-dom';
 
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
@@ -13,10 +16,27 @@ const layout = {
 
 
 function CreateFileModal({showModal,visible} : any) {
+
+  const [document, setDocument] = useState<any>()
+  const  dispatch = useDispatch()
+
+  const {courseId} = useParams()
+  const createDoc = ()=>{
+    console.log(document)
+    const fd = new FormData()
+    fd.append("title",document?.title)
+    fd.append("doc",document?.doc)
+    fd.append("cours",courseId)
+    dispatch(addOne("documents",fd))
+    showModal(false)
+  }
     const statut = {
-        name: 'file',
-        multiple: true,
-        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        name: 'doc',
+        multiple: false,
+        beforeUpload: (doc:any) => {
+          setDocument((document:any) => ({...document,doc}))
+          return false;
+        },
         onChange(info:any) {
           const { status } = info.file;
           if (status !== 'uploading') {
@@ -39,7 +59,7 @@ function CreateFileModal({showModal,visible} : any) {
       visible={visible}
       onCancel={()=> showModal(false)}
           footer={[
-            <Button form="myForm" key="creer" htmlType="submit">
+            <Button form="myForm" key="creer" htmlType="submit" onClick={createDoc}>
                creer
             </Button>,
             <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
@@ -50,7 +70,10 @@ function CreateFileModal({showModal,visible} : any) {
     <Form {...layout} form={form} name="control-hooks" id="myForm">
    
     <Form.Item name="titre" label="titre" rules={[{ required: true }]}>
-        <Input type="text" />
+        <Input type="text" onChange={(e) => {
+              e.persist()
+              setDocument((document:any) => ({...document,title:e.target.value}))
+            }}/>
       </Form.Item>      
     <br></br>
     <Form.Item>  

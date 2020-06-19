@@ -3,9 +3,10 @@ import { Model } from "../types"
 
 export const FETCH_ALL = "FETCH_ALL"
 
-export const fetchAll = (model: Model) => {
+export const fetchAll = (model: Model, query:string ="") => {
+
     return (dispatch: any) => {
-        api.get(`/${model}`)
+        api.get(`/${model}?${query}`,)
         .then(response => {
             console.log(response)
             dispatch({ type: FETCH_ALL, payload: { model, data: response.data } })
@@ -33,6 +34,21 @@ export const addOne = (model: Model, data:any) => {
     }
 }
 
+
+export const EDIT_ONE = "EDIT_ONE"
+
+export const editOne = (model: Model,id:number, data:any) => {
+    return (dispatch: any) => {
+        api.patch(`/${model}/${id}`, data)
+        .then(response => {
+            console.log(response)
+            dispatch({ type: EDIT_ONE, payload: { model, id, data: response.data } })
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    }
+}
 
 export const DELETE_ONE = "DELETE_ONE"
 
