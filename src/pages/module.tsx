@@ -23,29 +23,23 @@ function Modules() {
               style={{ width: 160, height: 170 }}
               onClick={() => history.replace(`/module/${courseId}/screenShare`)}
               cover={<ShareScreenSVG />}
-            >
-            </Card>
+            />
           </Col>
           <Col className="gutter-row" md={{ span: 3, offset: 1 }} lg={{ span: 6, offset: 2 }}>
             <Card bordered={false} hoverable
               style={{ width: 162, height: 170 }}
               onClick={() => history.replace(`/module/${courseId}/fileSharing`)}
               cover={<SupportDeCoursSVG />}
-            >
-
-            </Card>
-
+            />
           </Col>
           <Col className="gutter-row" md={{ span: 3, offset: 1 }} lg={{ span: 6, offset: 2 }}  >
             <Card bordered={false} hoverable
               style={{ width: 160, height: 170 }}
-              cover={<Link to="/tasks"><TasksSVG /></Link>
-              }
-            >
-            </Card>
+              onClick={() => history.replace(`/module/${courseId}/tasks`)}
+              cover={<TasksSVG />}
+            />
           </Col>
         </Row>
-
       </div>
     </Layout>
   )

@@ -25,7 +25,7 @@ function CreateCoursModal({showModal,visible} : any) {
   }, [])
 
   function handleAddFiliere(filiersIds:number[]) {
-    setCours((cours) => ({...cours,filiers:filiersIds.map(id =>({id}))}))
+    setCours((cours) => ({...cours,filiers:filiersIds?.map(id =>({id}))}))
   }
   const addCours = () => {
     console.log(cours)

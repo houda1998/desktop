@@ -21,9 +21,9 @@ function Home() {
   return (
       <HomeLayout>
               <div className="site-card-wrapper">
-                <Row gutter={[48, 24]}>
+                <Row gutter={[48, 24]} >
                   {cours && cours.map((cours:any) => (
-                      <Col key={cours.id} className="gutter-row" md={{ span: 3, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+                      <Col key={cours.id} className="gutter-row" sm={24} md={12} lg={6} xl={4}>
                       <CoursCard {...cours}/>
                     </Col>
                   ))}

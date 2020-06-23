@@ -20,15 +20,11 @@ function Routes() {
             <Student/>
             </Route>
             
-            <Route path="/tasks">
-            <TasksTest/>
-            </Route>
+           
             <Route path="/settings">
             <Settings></Settings>
             </Route>
-            <Route path="/StudentTask">
-            <StudentTask/>
-            </Route>
+          
             <Route exact path="/filieres">
             <Filieres/>
             </Route>
@@ -43,6 +39,12 @@ function Routes() {
             </Route>
             <Route path="/module/:courseId/fileSharing">
               <FilesList/>
+            </Route>
+            <Route exact path="/module/:courseId/tasks">
+            <TasksTest/>
+            </Route>
+            <Route path="/module/:courseId/tasks/:taskId/StudentTask">
+            <StudentTask/>
             </Route>
         </Switch>
     )

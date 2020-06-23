@@ -1,26 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../components/CourseLayout'
-import MyTasks from '../components/tasks';
-import { Button, Input } from 'antd';
+import { Button, Input, Collapse } from 'antd';
 import '../components/css/tasks.css';
-import { DeleteOutlined,PlusOutlined,EditOutlined,FolderOpenOutlined,SearchOutlined} from '@ant-design/icons'
+import { PlusOutlined, SearchOutlined } from '@ant-design/icons'
 import CreateTaskModal from '../components/createTaskModal';
+import EditTaskModal from '../components/EditTaskModal';
+import Task from '../components/Task';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAll } from '../redux/actions/models';
+import { RequestQueryBuilder, CondOperator } from '@nestjsx/crud-request';
+import { useParams } from 'react-router-dom';
 
 function TasksTest() {
-const [visible,showModal]=useState(false)
+    const [editModalVisible, showEditModal] = useState(false)
+    const [createModalVisible, showCreateModal] = useState(false)
+    const tasks = useSelector((state: any) => state.models["tasks"])
+    const dispatch = useDispatch()
+    const {courseId} = useParams()
+    useEffect(() => {
+        const query = RequestQueryBuilder.create()
+        query.setFilter({ field: "cours.id", operator: CondOperator.EQUALS, value: courseId })
+        dispatch(fetchAll("tasks",query.query()))
+    }, [])
     return (
-   <Layout>
-   <div>
-   <div  style={{paddingBottom:"20px",position:"sticky",float:"right"}}>
-   <Button className="mybtn" icon={<PlusOutlined/>} onClick={() => showModal(!visible)} >devoir</Button>
-   </div>    
-   <div style={{paddingBottom:"20px",position:"sticky",float:"right"}}>
-   <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />}/>
-   </div>
-   </div>
-   <MyTasks></MyTasks>
-   <CreateTaskModal visible={visible} showModal = {showModal}/>
-   </Layout>
+        <Layout>
+            <div>
+                <div style={{ paddingBottom: "20px", position: "sticky", float: "right" }}>
+                    <Button className="mybtn" icon={<PlusOutlined />} onClick={() => showCreateModal(!createModalVisible)} >devoir</Button>
+                </div>
+                <div style={{ paddingBottom: "20px", position: "sticky", float: "right" }}>
+                    <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />} />
+                </div>
+            </div>
+            <Collapse accordion defaultActiveKey={["1"]}>
+                {tasks?.map((task: any) => <Task task={task} />)}
+            </Collapse>
+            <CreateTaskModal visible={createModalVisible} showModal={showCreateModal} />
+        </Layout>
     )
 }
 

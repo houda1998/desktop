@@ -1,14 +1,28 @@
-import React from 'react'
-import { Layout,Statistic } from 'antd'
+import React, { useEffect } from 'react'
+import { Layout,Statistic, Table } from 'antd'
 const { Header, Footer, Sider, Content } = Layout;
-import MyLayout from "../components/HomeLayout"
+import MyLayout from "../components/CourseLayout"
 import '../components/css/StudentTask.css';
 import StudentListTask from '../components/StudentListTask';
 import Time from '../components/svgs/Time';
 import ListFileTask from '../components/ListFileTask';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAll } from '../redux/actions/models';
+import { RequestQueryBuilder, CondOperator } from '@nestjsx/crud-request';
+import { useParams } from 'react-router-dom';
 const { Countdown } = Statistic;
 function StudentTask() {
   const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
+  const dispatch = useDispatch()
+  const {taskId} = useParams()
+
+  const solutions = useSelector((state:any) => state.solutions)
+  useEffect(() => {
+    const query = RequestQueryBuilder.create()
+        query.setFilter({ field: "task.id", operator: CondOperator.EQUALS, value: taskId })
+    dispatch(fetchAll("solutions",query.query()))
+  }, [])
+  
     return (
    <MyLayout>
     <Layout>
@@ -21,10 +35,15 @@ function StudentTask() {
    
     </Header>
     <Layout>
-      <Sider style={{background:"white",border:"solid 1px #F0F0F0"}}><StudentListTask/></Sider>
       <Content style={{background:"white"}}>
-      <div style={{border:"solid 1px #F0F0F0",height:"25%"}}>info etudianrt</div>
-      <div><ListFileTask/></div>
+        <Table 
+        columns={[{dataIndex:"user.name", title:"name"}, 
+        {dataIndex:"createdAt", title:"submitted at"}, 
+        {dataIndex:"document.url",title:"document"},
+        {dataIndex:"note",title:"grade"}
+      ]}
+        dataSource={solutions}
+        />
       </Content>
     </Layout>
   </Layout>

@@ -17,14 +17,14 @@ function MultipleInputSelect(props:any) {
   const {values,key,title, handleChange, placeHolder, value} = props
     return (
         <Select
-        defaultValue={value.map((v:any) => ({key:v.id}))}
+        defaultValue={value?.map((v:any) => ({key:v.id}))}
         mode="multiple"
         style={{ width: '100%' }}
         placeholder={placeHolder}
         onChange={handleChange}
         labelInValue
         optionLabelProp="label"
-        options={values.map((v:any) => ({value:v.id, label:v.title}))}
+        options={values?.map((v:any) => ({value:v.id, label:v.title}))}
         />
     
     )
