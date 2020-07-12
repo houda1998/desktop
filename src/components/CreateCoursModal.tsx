@@ -24,8 +24,9 @@ function CreateCoursModal({showModal,visible} : any) {
     dispatch(fetchAll("filiers"))
   }, [])
 
-  function handleAddFiliere(filiersIds:number[]) {
-    setCours((cours) => ({...cours,filiers:filiersIds?.map(id =>({id}))}))
+  function handleAddFiliere(filiers:[]) {
+    console.log(filiers)
+    setCours((cours) => ({...cours,filiers:filiers?.map((f:any) =>({id:f.value}))}))
   }
   const addCours = () => {
     console.log(cours)

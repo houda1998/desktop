@@ -21,7 +21,9 @@ function StudentList() {
   const dispatch = useDispatch()
   const users :any = useSelector((state:any) => state.models["users"])
  useEffect(() => {
-   dispatch(fetchAll("users"))
+ /* const query = RequestQueryBuilder.create()
+  query.setFilter({ field: "task.id", operator: CondOperator.EQUALS, value: taskId })*/
+   dispatch(fetchAll("users",))
  }, []) 
 
  const myusers:any=[]
@@ -92,7 +94,7 @@ function StudentList() {
       },
       {
         title: 'filiere',
-        dataIndex: 'filiere',
+        dataIndex: 'filiere.title',
         key: 'filiere',
       },
     ]
