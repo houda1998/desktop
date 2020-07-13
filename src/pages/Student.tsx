@@ -23,7 +23,7 @@ function StudentList() {
  useEffect(() => {
  /* const query = RequestQueryBuilder.create()
   query.setFilter({ field: "task.id", operator: CondOperator.EQUALS, value: taskId })*/
-   dispatch(fetchAll("users",))
+   dispatch(fetchAll("users"))
  }, []) 
 
  const myusers:any=[]
@@ -49,7 +49,7 @@ function StudentList() {
   }
 
 
-  
+  console.log(users[0])
 
     const columns: ColumnProps<User>[] = [{
       
@@ -88,13 +88,11 @@ function StudentList() {
         
       },
       {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-      },
-      {
         title: 'filiere',
-        dataIndex: 'filiere.title',
+        dataIndex: 'filiere',
+        render:(value,record,index)=>{
+          return <div>{value.title}</div>
+        },
         key: 'filiere',
       },
     ]

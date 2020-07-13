@@ -109,11 +109,7 @@ function FiliereListStudent() {
       dataIndex: "name",
       key: "Fullname",
     },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
+  
 
     {
       title: "Action",
@@ -185,13 +181,7 @@ function FiliereListStudent() {
           </Form.Item>
         </Form>
       </Modal>
-      <CreateStudentModal
-        showModal={showCreateModalVisible}
-        visible={isCreateModalVisible}
-      />
-      <PlusButton
-        showModal={() => showCreateModalVisible(!isCreateModalVisible)}
-      />
+     
     </HomeLayout>
   );
 }

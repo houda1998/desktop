@@ -120,13 +120,6 @@ interface File {
       
       },
       {
-        title: 'date  ',
-        dataIndex: 'date',
-        key: 'date',
-       
-        
-      },
-      {
         title: 'Action',
         dataIndex: 'action',
         key: 'action',
@@ -179,13 +172,7 @@ interface File {
             key: 'link',
           
           },
-          {
-            title: 'date  ',
-            dataIndex: 'date',
-            key: 'date',
-           
-            
-          },
+       
           {
             title: 'Action',
             dataIndex: 'action',

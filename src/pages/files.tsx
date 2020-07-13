@@ -101,13 +101,6 @@ interface File {
       render:(cell, row, index) => (<a href={`http://localhost:3009/documents/files/${documents[index].url}`} target="_blank">{documents[index].url}</a>)
       },
       {
-        title: 'date  ',
-        dataIndex: 'date',
-        key: 'date',
-       
-        
-      },
-      {
         title: 'Action',
         dataIndex: 'action',
         key: 'action',
@@ -141,6 +134,9 @@ interface File {
           {
             title: 'url',
             dataIndex: 'url',
+            render:(cell, row, index) => (
+            <a href={`${links[index].url}`} target="_blank">{links[index].url}</a>)
+          ,
             key: 'url',
           
           },

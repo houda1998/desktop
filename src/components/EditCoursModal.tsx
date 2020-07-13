@@ -102,22 +102,6 @@ function EditCoursModal({visible, showModal, coursToEdit}:any) {
               ]}
         >
         <Form {...layout} form={form} name="control-hooks" id="myForm">
-        <Form.Item >
-        <div className="myupload">
-        <Upload
-        name="avatar"
-        listType="picture-card"
-        className="avatar-uploader"
-        showUploadList={false}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        beforeUpload={beforeUpload}
-        onChange={handleChange}
-
-        >
-        {image ? <img src={image} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-      </Upload>
-      </div>
-        </Form.Item>
        
         <Form.Item name="title" label="Nom du cours" rules={[{ required: true }]}>
             <Input style={{ marginLeft: "12px" }}  onChange={(e) => {
