@@ -23,15 +23,16 @@ function Filieres() {
         <HomeLayout>
             <div className="site-card-wrapper">
                 <Table
-                    columns={[{ title: "Titre", dataIndex: 'title', key: 'id', width:"60%"},
+                    columns={[{ title: "Field", dataIndex: 'title', key: 'id', width:"60%"},
                      {title:"", render:(cell, row, index) => <>
+                     <div style={{paddingLeft: "188px"}}>
                      <Link to={`/filieres/${filieres[index].id}/studentsList`}><Button type="primary"><BarsOutlined /></Button></Link>  
                      <Button type="dashed" onClick={() => {
                          setFiliereToEdit(filieres[index])
                          showEditModalVisible(true)
                          }}><EditOutlined /></Button>  
-                     <Button danger onClick={() => dispatch(deleteOne("filiers", filieres[index].id))}><UsergroupDeleteOutlined /></Button></>},
-                    ]}
+                     <Button danger onClick={() => dispatch(deleteOne("filiers", filieres[index].id))}><UsergroupDeleteOutlined /></Button></div></>},
+                 ]}
                     dataSource={filieres || []}
                 />
             </div>

@@ -59,7 +59,7 @@ function StudentList() {
            render:(cell, row, index) => 
            { 
 
-               if(myusers[index].isActive ==true){
+               if(myusers[index].isActive !=true){
                color='#5DF888';
                stat='active';
               
@@ -70,9 +70,7 @@ function StudentList() {
                stat="down";
                
              }
-            
-           
-             
+               
             return (
               
               <Tag color={color} key={stat} className="stat">
@@ -87,15 +85,18 @@ function StudentList() {
        
         
       },
+   
       {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-      },
-      {
-        title: 'filiere',
+        title: 'field',
         dataIndex: 'filiere.title',
         key: 'filiere',
+        render:(cell, row, index) => {
+          return(
+            <>
+          {myusers[index].filiere.title}
+          </>
+          )
+        }
       },
     ]
     //*******************************************return ************************//

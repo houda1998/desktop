@@ -84,8 +84,10 @@ interface File {
           dataIndex: 'name',
           key: 'name',
           render:(cell, row, index) => 
-          { 
-            switch (data[index].type) {
+          { var type:string[];
+            type=data[index].name.split(".")
+            console.log(type)
+            switch (type[1]) {
               case "pdf": icone=<FilePdfOutlined />
               break;
               case "doc":icone=<FileWordOutlined />

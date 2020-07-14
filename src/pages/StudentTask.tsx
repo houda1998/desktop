@@ -31,7 +31,7 @@ function StudentTask() {
     <p style={{display:"inline-block",float:"right"}}><Countdown  value={deadline}  style={{marginTop: "11px",
       marginLeft: "15px",
       border: "1px #f0f0f0 solid"}}/></p>  
-    <p style={{display:"inline-block",float:"right"}}><Time/>Temps restant: </p>  
+    <p style={{display:"inline-block",float:"right"}}><Time/>Time Left: </p>  
    
     </Header>
     <Layout>

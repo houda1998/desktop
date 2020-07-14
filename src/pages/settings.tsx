@@ -33,8 +33,8 @@ function Settings() {
           <Input type="number" />
         </Form.Item>
         <Form.Item >
-        <Button  htmlType="submit" style={{borderRadius:"100px",background:"linear-gradient(179.69deg, #FD749B -13.56%, #281AC8 158.3%)",marginLeft: "88px"}} >
-          lancer
+        <Button  htmlType="submit" style={{borderRadius:"100px",background:"linear-gradient(179.69deg, #FD749B -13.56%, #281AC8 158.3%)",marginLeft: "88px",color:"white"}} >
+          Start
         </Button>
       </Form.Item>
     </Form>

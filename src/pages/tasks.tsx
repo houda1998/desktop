@@ -26,7 +26,7 @@ function TasksTest() {
         <Layout>
             <div>
                 <div style={{ paddingBottom: "20px", position: "sticky", float: "right" }}>
-                    <Button className="mybtn" icon={<PlusOutlined />} onClick={() => showCreateModal(!createModalVisible)} >devoir</Button>
+                    <Button className="mybtn" icon={<PlusOutlined />} onClick={() => showCreateModal(!createModalVisible)} >task</Button>
                 </div>
                 <div style={{ paddingBottom: "20px", position: "sticky", float: "right" }}>
                     <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />} />

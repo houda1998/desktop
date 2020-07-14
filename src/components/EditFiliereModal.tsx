@@ -26,12 +26,12 @@ function EditFiliereModal({showModal,visible, filiere} : any) {
 console.log(newFiliere)
     return (
         <Modal
-        title="Modifier une filiere "
+        title="Edit field"
         visible={visible}
         onCancel={() => showModal(false)}
         footer={[
           <Button form="myForm" key="creer"  onClick={addfiliere}>
-            Modifier
+            edit
             </Button>,
           <Button key="cancel" htmlType="button" onClick={() => showModal(false)}>
             cancel

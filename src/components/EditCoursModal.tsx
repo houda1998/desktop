@@ -89,12 +89,12 @@ function EditCoursModal({visible, showModal, coursToEdit}:any) {
   }
     return (
         <Modal
-        title="modifier cours"
+        title="Edit course"
         visible={visible}
         onCancel={()=> showModal(false)}
             footer={[
               <Button form="myForm" key="creer" htmlType="submit" onClick={handleEdit}>
-                 modifier
+                 edit
               </Button>,
               <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
                   cancel
@@ -103,38 +103,24 @@ function EditCoursModal({visible, showModal, coursToEdit}:any) {
         >
         <Form {...layout} form={form} name="control-hooks" id="myForm">
         <Form.Item >
-        <div className="myupload">
-        <Upload
-        name="avatar"
-        listType="picture-card"
-        className="avatar-uploader"
-        showUploadList={false}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        beforeUpload={beforeUpload}
-        onChange={handleChange}
-
-        >
-        {image ? <img src={image} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-      </Upload>
-      </div>
         </Form.Item>
        
-        <Form.Item name="title" label="Nom du cours" rules={[{ required: true }]}>
+        <Form.Item name="title" label="Course Name" rules={[{ required: true }]}>
             <Input style={{ marginLeft: "12px" }}  onChange={(e) => {
               e.persist()
               setCours((cours:any) => ({...cours,title:e.target.value}))
             }}/>
           </Form.Item>
-          <Form.Item name="anneeScolaire" label="Année Scolaire" rules={[{ required: true }]}>
+          <Form.Item name="anneeScolaire" label="Academic Year" rules={[{ required: true }]}>
             <Input    style={{ marginLeft: "12px" }} onChange={(e) => {
               e.persist()
               setCours((cours:any) => ({...cours,anneeScolaire:e.target.value}))
             }} />
           </Form.Item>
-        <Form.Item name="filiers" label="Fillière(s)">
+        <Form.Item name="filiers" label="Field(s)">
         <MultipleInputSelect 
               values={filiers}
-              placeHolder="selectionnez les fillières"
+              placeHolder="Select Field"
               key="id"
               title="title"
               handleChange={handleAddFiliere}

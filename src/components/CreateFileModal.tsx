@@ -55,12 +55,12 @@ function CreateFileModal({showModal,visible} : any) {
  
     return (
         <Modal
-      title="Ajouter fichier"
+      title="Add file"
       visible={visible}
       onCancel={()=> showModal(false)}
           footer={[
             <Button form="myForm" key="creer" htmlType="submit" onClick={createDoc}>
-               creer
+               add
             </Button>,
             <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
                 cancel
@@ -69,14 +69,14 @@ function CreateFileModal({showModal,visible} : any) {
     >
     <Form {...layout} form={form} name="control-hooks" id="myForm">
    
-    <Form.Item name="titre" label="titre" rules={[{ required: true }]}>
+    <Form.Item name="titre" label="title" rules={[{ required: true }]}style={{paddingRight:"127px"}}>
         <Input type="text" onChange={(e) => {
               e.persist()
               setDocument((document:any) => ({...document,title:e.target.value}))
             }}/>
       </Form.Item>      
     <br></br>
-    <Form.Item>  
+    <Form.Item style={{paddingLeft:"98px"}}>  
       <Dragger {...statut} >
       <p className="ant-upload-drag-icon">
         <InboxOutlined />

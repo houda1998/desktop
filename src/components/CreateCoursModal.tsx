@@ -35,12 +35,12 @@ function CreateCoursModal({showModal,visible} : any) {
   }
     return (
         <Modal
-        title="créer un cours "
+        title="Add course "
         visible={visible}
         onCancel={() => showModal(false)}
         footer={[
           <Button form="myForm" key="creer"  onClick={addCours}>
-            creer
+            Add
             </Button>,
           <Button key="cancel" htmlType="button" onClick={() => showModal(false)}>
             cancel
@@ -48,22 +48,22 @@ function CreateCoursModal({showModal,visible} : any) {
         ]}
       >
         <Form {...layout} form={form} name="control-hooks" id="myForm">
-          <Form.Item name="cours" label="Nom du cours" rules={[{ required: true }]}>
+          <Form.Item name="cours" label="Course Name" rules={[{ required: true }]}>
             <Input style={{ marginLeft: "12px" }}  onChange={(e) => {
               e.persist()
               setCours(cours => ({...cours,title:e.target.value}))
             }}/>
           </Form.Item>
-          <Form.Item name="annee" label="Année Scolaire" rules={[{ required: true }]}>
+          <Form.Item name="annee" label="Academic Year" rules={[{ required: true }]}>
             <Input    style={{ marginLeft: "12px" }} onChange={(e) => {
               e.persist()
               setCours(cours => ({...cours,anneeScolaire:e.target.value}))
             }} />
           </Form.Item>
-          <Form.Item name="filiers" label="Fillière(s)" >
+          <Form.Item name="filiers" label="Field(s)" >
               <MultipleInputSelect 
               values={filiers}
-              placeHolder="selectionnez les fillières"
+              placeHolder="select field"
               key="id"
               title="title"
               handleChange={handleAddFiliere}

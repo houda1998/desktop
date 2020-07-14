@@ -26,12 +26,12 @@ function CreateLinkModal({showModal,visible} : any) {
     }
     return (
         <Modal
-        title="partager lien"
+        title="Share link"
         visible={visible}
         onCancel={()=> showModal(false)}
             footer={[
               <Button form="myForm" key="creer" htmlType="submit" onClick={addLink}>
-                 crée
+                 share
               </Button>,
               <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
                   cancel
@@ -39,14 +39,14 @@ function CreateLinkModal({showModal,visible} : any) {
               ]}
         >
         <Form {...layout} form={form} name="control-hooks" id="myForm">
-        <Form.Item name="linkTitle" label="titre" rules={[{ required: true }]}>
+        <Form.Item name="linkTitle" label="title" rules={[{ required: true }]}>
           <Input type="text"  onChange={(e) => {
             e.persist()
             setLink(link => ({...link,title:e.target.value}))
           }} />
         </Form.Item>      
         <br></br>
-        <Form.Item name="lien" label="lien" rules={[{required:true}]}>  
+        <Form.Item name="lien" label="link" rules={[{required:true}]}>  
         <Input type="url"  onChange={(e) => {
           e.persist()
           setLink(link => ({...link,url:e.target.value}))

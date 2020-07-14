@@ -21,7 +21,6 @@ function HomeLayout({children}:any) {
         <Layout>
         <Header className="nav">
           <NGCLogo />
-          <Input placeholder="Search" className="searchbar" />
         </Header>
         <Layout>
           <Sider width={200} style={{ background: '#fff' }} className='Sider' collapsedWidth="0" collapsible collapsed={Collapsed} onCollapse={onCollapse}>
@@ -34,12 +33,12 @@ function HomeLayout({children}:any) {
           selectedKeys={pathRoutes}
         >
            <Menu.Item key="home" style={{color:'rgba(0, 0, 0, 0.65)'}} icon={<ReadOutlined style={{color:"rgba(206, 47, 142, 0.61)"}}/>} >
-            <Link to="/home">cours</Link>
+            <Link to="/home">Courses</Link>
             </Menu.Item>
           <Menu.Item key="filieres" style={{color:'rgba(0, 0, 0, 0.65)' }} icon={<TeamOutlined style={{color:"rgba(206, 47, 142, 0.61)"}}/>}>
-            <Link to="/filieres">filiers</Link>
+            <Link to="/filieres">Fields</Link>
             </Menu.Item>
-            <Menu.Item key="settings" icon={<SettingFilled style={{color:"rgba(206, 47, 142, 0.61)"}}/>} style={{color:'rgba(0, 0, 0, 0.65)'}}><Link to="/settings">settings</Link></Menu.Item>
+            <Menu.Item key="settings" icon={<SettingFilled style={{color:"rgba(206, 47, 142, 0.61)"}}/>} style={{color:'rgba(0, 0, 0, 0.65)'}}><Link to="/settings">Settings</Link></Menu.Item>
 
         </Menu>
           </Sider>

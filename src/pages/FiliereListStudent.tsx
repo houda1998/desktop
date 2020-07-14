@@ -63,22 +63,21 @@ function FiliereListStudent() {
     key: number;
     AccountStatut: boolean;
     Fullname: string;
-    email: string;
     filiere: string;
     action: any;
   }
 
   const More = ({ id }: any) => (
     <Menu>
-      <Menu.Item className="mydropdown" onClick={() => showModal(!visible)}>
+      <Menu.Item className="mydropdown" onClick={() => showModal(!visible)} style={{width:100}}>
         <UserSwitchOutlined />
-        modifier
+        edit
       </Menu.Item>
       <Menu.Item
         className="mydropdown"
         onClick={() => dispatch(deleteOne("users", id))}
       >
-        <UserDeleteOutlined /> supprimer
+        <UserDeleteOutlined /> delete
       </Menu.Item>
     </Menu>
   );
@@ -89,7 +88,7 @@ function FiliereListStudent() {
       dataIndex: "isActive",
       key: "AccountStatut",
       render: (cell, row, index) => {
-        if (myusers[index].isActive == true) {
+        if (myusers[index].isActive != false) {
           color = "#5DF888";
           stat = "active";
         } else {
@@ -109,14 +108,10 @@ function FiliereListStudent() {
       dataIndex: "name",
       key: "Fullname",
     },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
+   
 
     {
-      title: "Action",
+      title: "Actions",
       dataIndex: "action",
       key: "action",
       render: (record, value: any) => {
@@ -142,12 +137,12 @@ function FiliereListStudent() {
 
       <Table columns={columns} dataSource={users || []} />
       <Modal
-        title="modifier étudiant"
+        title="Edit student"
         visible={visible}
         onCancel={() => showModal(false)}
         footer={[
           <Button form="myForm" key="creer" htmlType="submit">
-            creer
+            edit
           </Button>,
           <Button
             key="cancel"
@@ -161,14 +156,12 @@ function FiliereListStudent() {
         <Form {...layout} form={form} name="control-hooks" id="myForm">
           <Form.Item
             name="FullName"
-            label="fullName"
+            label="FullName"
             rules={[{ required: true }]}
           >
             <Input type="text" />
           </Form.Item>
-          <Form.Item name="Email" label="Email" rules={[{ required: true }]}>
-            <Input type="email" />
-          </Form.Item>
+         
           <Form.Item
             name="password"
             label="Password"
@@ -189,9 +182,7 @@ function FiliereListStudent() {
         showModal={showCreateModalVisible}
         visible={isCreateModalVisible}
       />
-      <PlusButton
-        showModal={() => showCreateModalVisible(!isCreateModalVisible)}
-      />
+   
     </HomeLayout>
   );
 }

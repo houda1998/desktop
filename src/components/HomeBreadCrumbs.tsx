@@ -8,11 +8,11 @@ function HomeBreadCrumbs() {
     const {filierId} = useParams()
     return (
         <Breadcrumb style={{ margin: '16px 0' }}>
-            {paths.includes("home") && <Breadcrumb.Item>Cours</Breadcrumb.Item>}
-            {paths.includes("filieres") && <Breadcrumb.Item><Link to={"/filieres"}>Filieres</Link></Breadcrumb.Item>}
+            {paths.includes("home") && <Breadcrumb.Item>Courses</Breadcrumb.Item>}
+            {paths.includes("filieres") && <Breadcrumb.Item><Link to={"/filieres"}>Fields</Link></Breadcrumb.Item>}
             {paths.includes("filieres") && <Breadcrumb.Item>{filierId}</Breadcrumb.Item>}
             {paths.includes("settings") && <Breadcrumb.Item>Settings</Breadcrumb.Item>}
-            {paths.includes("studentsList") && <Breadcrumb.Item>studentsList</Breadcrumb.Item>}
+            {paths.includes("studentsList") && <Breadcrumb.Item>StudentsList</Breadcrumb.Item>}
         </Breadcrumb>
     )
 }

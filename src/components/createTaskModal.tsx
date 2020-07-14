@@ -51,12 +51,12 @@ function CreateTaskModal({ showModal, visible }: any) {
 
   return (
     <Modal
-      title="Ajouter devoir"
+      title="Add task"
       visible={visible}
       onCancel={() => showModal(false)}
       footer={[
         <Button form="myForm" key="creer" htmlType="submit" onClick={addTask}>
-          creer
+          add
         </Button>,
         <Button key="cancel" htmlType="button" onClick={() => showModal(false)}>
           cancel
@@ -73,12 +73,12 @@ function CreateTaskModal({ showModal, visible }: any) {
           console.log(form.getFieldsValue());
         }}
       >
-        <Form.Item name="title" label="titre" rules={[{ required: true }]}>
+        <Form.Item name="title" label="title" rules={[{ required: true }]}>
           <Input type="text" />
         </Form.Item>
         <Form.Item
           name="instructions"
-          label="Instruction"
+          label="Instructions"
           rules={[{ required: true }]}
         >
           <Input.TextArea />
@@ -90,11 +90,11 @@ function CreateTaskModal({ showModal, visible }: any) {
         >
           <TimePicker />
         </Form.Item>
-        <Form.Item name="noted" label="Note" rules={[{ required: true }]}>
+        <Form.Item name="noted" label="Graded" rules={[{ required: true }]}>
           <Select
             defaultValue="no"
             style={{ width: "100%" }}
-            placeholder="le devoir est-il noté ?"
+            placeholder="is the task graded  ?"
           >
             <Option value="yes" label="yes">
               yes

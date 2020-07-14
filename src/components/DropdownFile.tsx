@@ -48,7 +48,7 @@ function DropDownFile({file}:any) {
       };
     
     const layout = {
-        labelCol: { span: 8 },
+        labelCol: { span: 6},
         wrapperCol: { span: 16 },
     };
 
@@ -61,12 +61,12 @@ function DropDownFile({file}:any) {
         </Dropdown>
       
         <Modal
-        title="modifier fichier"
+        title="edit file"
         visible={visible}
         onCancel={()=> showModal(false)}
             footer={[
               <Button form="myForm" key="creer" htmlType="submit">
-                 modifier
+                 edit
               </Button>,
               <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
                   cancel
@@ -74,24 +74,26 @@ function DropDownFile({file}:any) {
               ]}
         >
         <Form {...layout} form={form} name="control-hooks" id="myForm">
-        <Form.Item name="Filetitle" label="titre" style={{paddingRight: "51px"}} rules={[{ required: true }]}>
-          <Input type="text" />
-        </Form.Item>      
-        <Form.Item>  
-        <Dragger {...statut} >
-        <p className="ant-upload-drag-icon">
-          <InboxOutlined />
-        </p>
-        <p className="ant-upload-text">Click or drag file to this area to upload</p>
-        <p className="ant-upload-hint">
-          Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-          band files
-        </p>
-        </Dragger>,
-        </Form.Item>  
-        <Form.Item {...tailLayout}>
-        </Form.Item>
-        </Form>
+   
+    <Form.Item name="titre" label="title" rules={[{ required: true }]}style={{paddingRight:"86px"}}>
+        <Input type="text"/>
+      </Form.Item>      
+    <br></br>
+    <Form.Item style={{paddingLeft:"98px"}}>  
+      <Dragger {...statut} >
+      <p className="ant-upload-drag-icon">
+        <InboxOutlined />
+      </p>
+      <p className="ant-upload-text">Click or drag file to this area to upload</p>
+      <p className="ant-upload-hint">
+        Support for a single or bulk upload. Strictly prohibit from uploading company data or other
+        band files
+      </p>
+    </Dragger>,
+    </Form.Item>  
+    <Form.Item {...tailLayout}>
+     </Form.Item>
+    </Form>
         
         </Modal>
         </div>

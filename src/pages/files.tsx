@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FileList from "../components/File"
 import { Table,Dropdown, Menu ,Collapse, message, Form, Upload, Modal, Button, Input} from 'antd';
-import { SearchOutlined ,FilePdfOutlined,FileWordOutlined
+import { FileOutlined,SearchOutlined ,FilePdfOutlined,FileWordOutlined
   ,FileImageOutlined,FileExcelOutlined,FilePptOutlined,FileTextOutlined,InboxOutlined } from '@ant-design/icons'
 import '../components/css/file.css';
 import '@ant-design/compatible/assets/index.css';
@@ -65,48 +65,49 @@ interface File {
           dataIndex: 'title',
           key: 'title',
         },
-      {
-        title: 'type',
-        dataIndex: 'type',
-        key: 'type',
-        render:(cell, row, index) => 
-        { 
-          switch (documents[index].type) {
-            case "pdf": icone=<FilePdfOutlined />
-            break;
-            case "doc":icone=<FileWordOutlined />
-            break;
-            case "jpg":icone=<FileImageOutlined />
-            break;
-            case "xsl":icone=<FileExcelOutlined />
-            break;
-            case"ppt":icone=<FilePptOutlined />
-              break;
-          
-            default:icone=<FileTextOutlined />
-              break;
-          }
-         
-         return (
-           
-           <div>
-          {icone}
-           </div>
-         ) } 
-      },
+ 
       {
         title: 'url',
         dataIndex: 'url',
         key: 'url',
-      render:(cell, row, index) => (<a href={`http://localhost:3009/documents/files/${documents[index].url}`} target="_blank">{documents[index].url}</a>)
-      },
-      {
-        title: 'date  ',
-        dataIndex: 'date',
-        key: 'date',
-       
-        
-      },
+          render:(cell, row, index) => 
+          { var type:string[];
+            var fullname:String=documents[index].url;
+            console.log(fullname)
+            type=fullname.split(".")
+            switch (type[1].toLowerCase()) {
+              case "pdf": icone=<FilePdfOutlined style={{fontSize:30}}/>
+              break;
+              case "doc":icone=<FileWordOutlined style={{fontSize:30}}/>
+              break;
+              case "docx":icone=<FileWordOutlined style={{fontSize:30}}/>
+              break;
+              case "jpg":icone=<FileImageOutlined style={{fontSize:30}}/>
+              break;
+              case "png":icone=<FileImageOutlined style={{fontSize:30}}/>
+              break;
+              case "svg":icone=<FileImageOutlined style={{fontSize:30}}/>
+              break;
+              case "xsl":icone=<FileExcelOutlined style={{fontSize:30}}/>
+              break;
+              case "csv":icone=<FileExcelOutlined style={{fontSize:30}}/>
+              break;
+              case"ppt":icone=<FilePptOutlined style={{fontSize:30}}/>
+                break;
+            
+              default:icone=<FileOutlined style={{fontSize:30}}/>
+                break;
+            }
+           
+           return (
+             
+             <div>
+            {icone} {" "}
+            <a href={`http://localhost:3009/documents/files/${documents[index].url}`} target="_blank">{documents[index].url}</a>
+             </div>
+           ) } 
+        },
+
       {
         title: 'Action',
         dataIndex: 'action',
@@ -173,7 +174,7 @@ interface File {
       <PlusButton showModal={() => showCreateFileModal(!visible)} />
     <CreateFileModal visible={visible} showModal = {showCreateFileModal}/>
     </Panel>
-    <Panel header="liens" key="2">
+    <Panel header="links" key="2">
     <div style={{paddingBottom:"55px",position:"sticky"}}>
       <Input placeholder="Search" className="searchbar" prefix={<SearchOutlined />}/>
       </div>

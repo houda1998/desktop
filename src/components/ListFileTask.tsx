@@ -31,7 +31,7 @@ function ListFileTask() {
            <Table columns={[{title:"title",key:"title",dataIndex:"title", render:(cell, row, index) => 
            { 
              switch (fichiers[index].type) {
-               case "pdf": icone=<FilePdfOutlined />
+               case "pdf": icone=<FilePdfOutlined style={{fontSize:10}}/>
                break;
                case "doc":icone=<FileWordOutlined />
                break;

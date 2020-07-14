@@ -44,12 +44,12 @@ function EditTaskModal({showModal,visible} : any) {
 
     return (
         <Modal
-      title="Modifier devoir"
+      title="edit task"
       visible={visible}
       onCancel={()=> showModal(false)}
           footer={[
             <Button form="myForm" key="creer" htmlType="submit">
-               creer
+               edit
             </Button>,
             <Button  key="cancel" htmlType="button" onClick={() => showModal(false)}>
                 cancel
@@ -58,21 +58,20 @@ function EditTaskModal({showModal,visible} : any) {
     >
     <Form {...layout} form={form} name="control-hooks" id="myForm">
    
-    <Form.Item name="titre" label="titre" rules={[{ required: true }]}>
+    <Form.Item name="titre" label="title" rules={[{ required: true }]}>
         <Input type="text" />
       </Form.Item> 
-      <Form.Item name="Instruction" label="Instruction" rules={[{ required: true }]}>
+      <Form.Item name="Instruction" label="Instructions" rules={[{ required: true }]}>
       <Input.TextArea />
       </Form.Item> 
       <Form.Item name="Deadline" label="Deadline" >
-      <DatePicker />
       <TimePicker value={value} onChange={onChange} />
       </Form.Item>     
-      <Form.Item name="Note" label="Note" rules={[{ required: true }]}>
+      <Form.Item name="Note" label="Graded" rules={[{ required: true }]}>
       <Select
     defaultValue="no"
     style={{ width: '100%' }}
-    placeholder="le devoir est-il noté ?"
+    placeholder="the task is graded ?"
     onChange={handleChange}
   >
     <Option value="yes" label="yes">
@@ -84,18 +83,7 @@ function EditTaskModal({showModal,visible} : any) {
   </Select>
       </Form.Item>    
     <br></br>
-    <Form.Item>  
-      <Dragger {...statut} >
-      <p className="ant-upload-drag-icon">
-        <InboxOutlined />
-      </p>
-      <p className="ant-upload-text">Click or drag file to this area to upload</p>
-      <p className="ant-upload-hint">
-        Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-        band files
-      </p>
-    </Dragger>,
-    </Form.Item>  
+    
     <Form.Item {...tailLayout}>
      </Form.Item>
     </Form>

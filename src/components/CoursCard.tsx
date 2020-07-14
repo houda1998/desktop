@@ -6,8 +6,8 @@ function CoursCard(cours: any) {
   const { title, id, anneScolaire } = cours
   return (
     <Card bordered={true} hoverable
-      style={{ width: 160, height: 200 }}
-      cover={<Link to={"/module/" + id}><img style={{ width: 130, height: 140 }} alt="example" src="https://image.freepik.com/icones-gratuites/graduation_318-1944.jpg" /></Link>}
+      style={{ width: 220, height: 190,borderRadius : "40px",backgroundColor: "#FFF9FE",textAlign:"center" }}
+      cover={<Link to={"/module/" + id}><img style={{ width: "220px", height: "127px ",borderRadius:"17px 17px 0 0"}} alt="example" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQoP11vlBYn6os4qDxjt4vaPjOlN1QMspzU9tdZUL0euLemlWIh&usqp=CAU" /></Link>}
     >
       <div style={{ display: "inline-block", textAlign: "center" }}>
         {title}

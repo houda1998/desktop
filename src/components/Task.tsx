@@ -66,7 +66,7 @@ function Task({ task, ...rest }: any) {
         <br />
         <br />
         <br />
-        <strong>fichiers:</strong>
+        <strong>files:</strong>
         <br />
         {documents?.map((doc: any) => (
           <>

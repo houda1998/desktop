@@ -44,12 +44,12 @@ function DropDownLink({link}:any) {
         </Dropdown>
       
         <Modal
-        title="modifier lien"
+        title="edit link"
         visible={visible}
         onCancel={()=> showEditLinkModal(false)}
             footer={[
               <Button form="myForm" key="creer" htmlType="submit">
-                 modifier
+                 edit
               </Button>,
               <Button  key="cancel" htmlType="button" onClick={() => showEditLinkModal(false)}>
                   cancel
@@ -58,11 +58,11 @@ function DropDownLink({link}:any) {
         >
         <Form {...layout} form={form} name="control-hooks" id="myForm">
         
-        <Form.Item name="linkTitle" label="titre" rules={[{ required: true }]}>
+        <Form.Item name="linkTitle" label="title" rules={[{ required: true }]}>
           <Input type="text" />
         </Form.Item>      
         <br></br>
-        <Form.Item name="lien" label="lien" rules={[{required:true}]}>  
+        <Form.Item name="lien" label="link" rules={[{required:true}]}>  
         <Input type="url" />
         </Form.Item>  
         <Form.Item {...tailLayout}>
