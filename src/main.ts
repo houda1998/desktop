@@ -19,6 +19,7 @@ const createWindow = () => {
   // and load the index.html of the app.
   mainWindow.loadURL(HOME_WEBPACK_ENTRY);
 
+  mainWindow.setMenuBarVisibility(false)
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
   installExtension(REDUX_DEVTOOLS)

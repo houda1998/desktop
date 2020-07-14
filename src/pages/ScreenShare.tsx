@@ -8,13 +8,13 @@ let hasjoined = false
 function ScreenShare() {
     const [connection, setConnection] = useState<any>(null)
     const [stream, setStream] = useState<any>(null)
-    const [canShareScreen, setCanShare] = useState(false)
+    const [canShareScreen, setCanShare] = useState(true)
     const videoContainer = useRef<HTMLVideoElement>(null);
-
+    console.log("can",canShareScreen)
     useEffect(() => {
         const connection = new RTCmulticonnection()
         setConnection(connection)
-
+        
        const interval =  setInterval(()=>{
             connection.checkPresence("hehe xd",function(isSharing:any){
                 setCanShare(!isSharing)
@@ -22,10 +22,6 @@ function ScreenShare() {
                     OfferToReceiveAudio: false,
                     OfferToReceiveVideo: true
                 };
-               /* if(isSharing && !hasjoined){
-                    hasjoined = true
-                    connection?.join("hehe xd");
-                }*/
             })
         },1000)
 
@@ -80,6 +76,14 @@ function ScreenShare() {
         }
     },[stream])
 
+    if(!canShareScreen && !hasjoined){
+        console.log("joining")
+        connection?.join("hehe xd", function() {
+            console.log("sharing is caring !")
+        });
+        hasjoined=true;
+    }
+
     return (
         <ScreenShareLayout>
             <video controls id="videos-container" ref={videoContainer}   height={500} style={{width:"-webkit-fill-available"}} ></video>
@@ -92,7 +96,6 @@ function ScreenShare() {
                     });
             }}
             >Screen Share</Button>
-            
         </ScreenShareLayout>
     )
 }

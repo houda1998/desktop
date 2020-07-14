@@ -178,11 +178,7 @@ function FiliereListStudent() {
           </Form.Item>
         </Form>
       </Modal>
-      <CreateStudentModal
-        showModal={showCreateModalVisible}
-        visible={isCreateModalVisible}
-      />
-   
+      
     </HomeLayout>
   );
 }

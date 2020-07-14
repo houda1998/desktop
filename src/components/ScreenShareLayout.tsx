@@ -51,9 +51,6 @@ function ScreenShareLayout({children}:any) {
             <Layout>
         <Content>{children}</Content>
 
-        <Sider width={200} style={{ background: '#fff' }} collapsedWidth="0" className='Sider' collapsible collapsed={Collapse} onCollapse={onCollapse2} trigger={<LeftSquareOutlined />} reverseArrow>
-        Sider
-    </Sider>
       </Layout>
             </Content>
           </Layout>

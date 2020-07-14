@@ -142,6 +142,9 @@ interface File {
           {
             title: 'url',
             dataIndex: 'url',
+            render:(cell, row, index) => (
+            <a href={`${links[index].url}`} target="_blank">{links[index].url}</a>)
+          ,
             key: 'url',
           
           },

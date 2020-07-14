@@ -102,8 +102,8 @@ function EditCoursModal({visible, showModal, coursToEdit}:any) {
               ]}
         >
         <Form {...layout} form={form} name="control-hooks" id="myForm">
-        <Form.Item >
-        </Form.Item>
+     
+       
        
         <Form.Item name="title" label="Course Name" rules={[{ required: true }]}>
             <Input style={{ marginLeft: "12px" }}  onChange={(e) => {
